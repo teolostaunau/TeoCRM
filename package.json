@@ -1,34 +1,36 @@
 {
-  "name": "TeoCRM",
-  "version": "0.2.2",
+  "name": "teocrm",
+  "version": "0.3.0",
   "private": true,
-  "description": "Self-hostable CRM template for WhatsApp built on Next.js and Supabase — shared inbox, contacts, sales pipelines, broadcasts, and no-code automations.",
+  "description": "TeoCRM — Plataforma inteligente para la gestión de clientes, ventas y automatización empresarial impulsada por Inteligencia Artificial.",
   "license": "MIT",
-  "author": "Arnas Donauskas",
-  "homepage": "https://github.com/ArnasDon/wacrm",
+  "author": "Teo Lostaunau",
+  "homepage": "https://github.com/teolostaunau/TeoCRM",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ArnasDon/wacrm.git"
+    "url": "git+https://github.com/teolostaunau/TeoCRM.git"
   },
+
   "bugs": {
-    "url": "https://github.com/ArnasDon/wacrm/issues"
+    "url": "https://github.com/teolostaunau/TeoCRM/issues"
   },
   "keywords": [
     "crm",
-    "whatsapp",
-    "whatsapp-business-api",
+    "teocrm",
+    "sales",
+    "automation",
+    "ai",
+    "artificial-intelligence",
     "nextjs",
     "supabase",
-    "automation",
-    "broadcast",
-    "self-hosted",
-    "template"
+    "business",
+    "erp"
   ],
   "engines": {
     "node": "20.19.x"
   },
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --webpack",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
