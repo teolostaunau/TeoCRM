@@ -1,161 +1,326 @@
-# wacrm — CRM Template for WhatsApp
+![Next.js](https://img.shields.io/badge/Next.js-15-black)
 
-> Self-hostable CRM template for WhatsApp® — shared inbox, contacts,
-> sales pipelines, broadcasts, and no-code automations. Fork it, brand
-> it, host it.
+![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)
+
+![Supabase](https://img.shields.io/badge/Supabase-Green)
+
+![License](https://img.shields.io/badge/license-Apache--2.0-blue)
+
+![Version](https://img.shields.io/badge/version-1.0--alpha-orange)
+
+![Status](https://img.shields.io/badge/status-Active%20Development-success)
+
+# TeoCRM
 
 <p align="center">
-  <a href="https://www.hostinger.com/web-apps-hosting">
-    <img src="./.github/assets/hostinger-deploy.png" alt="Ship your Node.js app in one click — Deploy to Hostinger" width="900">
-  </a>
+
+[Logo de TeoCRM]
+
+# TeoCRM
+
+### Organiza. Acompaña. Impulsa.
+
+CRM inteligente para emprendedores, coaches, consultores y pequeñas empresas.
+
+Desarrollado por **Teo Technologies**
+
 </p>
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-violet.svg)](./LICENSE)
-[![CI](https://github.com/ArnasDon/wacrm/actions/workflows/ci.yml/badge.svg)](https://github.com/ArnasDon/wacrm/actions/workflows/ci.yml)
-[![Next.js 16](https://img.shields.io/badge/Next.js-16-black?logo=nextdotjs)](https://nextjs.org)
-[![Supabase](https://img.shields.io/badge/Supabase-Postgres%20%2B%20Auth-3ecf8e?logo=supabase)](https://supabase.com)
-[![Stars](https://img.shields.io/github/stars/ArnasDon/wacrm?style=social)](https://github.com/ArnasDon/wacrm/stargazers)
+---
 
-The marketing site and self-host docs live in a separate repo:
-[ArnasDon/wacrm-site](https://github.com/ArnasDon/wacrm-site)
-([wacrm.tech](https://wacrm.tech)). This repo is the product —
-clone or fork it to run your own CRM.
+# ¿Qué es TeoCRM?
 
-## What you get out of the box
+TeoCRM es una plataforma SaaS moderna diseñada para ayudar a emprendedores, coaches, consultores y pequeñas empresas a gestionar clientes, automatizar procesos y fortalecer sus relaciones comerciales mediante Inteligencia Artificial.
 
-- **Shared inbox** on the official WhatsApp Business API — multiple
-  agents working one number, per-conversation assignment, status, and
-  notes.
-- **Contacts + tags + custom fields**, CSV import, deduplication.
-- **Sales pipelines** (Kanban) with deals linked to conversations.
-- **Broadcasts** with Meta-approved templates, delivery + read
-  tracking, per-recipient variable substitution.
-- **No-code automations** — triggers on inbound messages, new
-  contacts, keywords, or schedule; conditional branches, waits,
-  tags, webhooks. Visual builder.
-- **Real-time dashboard** — response times, daily volume, pipeline
-  value, cross-module activity feed.
-- **Team accounts** — invite teammates by link, role-based access
-  (owner / admin / agent / viewer), ownership transfer. Every install
-  is account-scoped, so one shared inbox can be staffed by a whole
-  team. Solo use stays single-user with zero setup.
-- **Account management** — email, password, avatar, global sign-out.
-- **Public REST API** (`/api/v1`) with scoped, revocable API keys —
-  build your own automations on top of your CRM. See
-  [docs/public-api.md](./docs/public-api.md).
+Más que un CRM tradicional, TeoCRM integra herramientas de seguimiento comercial, automatización, comunicación y acompañamiento para convertir cada interacción en una oportunidad de crecimiento.
 
-## Why fork this?
+---
 
-This is a **template**, not a product. Forking means you get:
+# Nuestra visión
 
-- **Full ownership** — your code, your Supabase project, your domain,
-  your data. No SaaS lock-in, no seat pricing, no trust dance.
-- **Full customisation** — add the fields your team needs, remove the
-  modules you don't, redesign anything. The stack is boring on
-  purpose (Next.js + Supabase + Tailwind) so the learning curve is
-  short.
-- **Zero ops to start** — [Hostinger](https://www.hostinger.com/web-apps-hosting)
-  Managed Node.js deploys a fork in a few clicks. No Docker, no
-  Kubernetes, no infra team needed.
-  ([See below ↓](#-deploy-on-hostinger-recommended))
-- **Real security primitives** — token encryption (AES-256-GCM), RLS
-  on every table, HMAC-verified webhooks, CSP, rate limiting, CI
-  typecheck/build on every PR.
+Ser la plataforma inteligente de referencia para emprendedores y pequeñas empresas de Latinoamérica, ayudándoles a organizar sus relaciones, automatizar sus procesos y crecer de forma sostenible mediante Inteligencia Artificial.
 
-Not a framework. Not an SDK. A concrete, working CRM you can stand up
-in an afternoon and make yours.
+---
 
-## Quick start
+# Nuestra misión
+
+Desarrollar tecnología con propósito que simplifique la gestión comercial y convierta la información en mejores decisiones.
+
+---
+
+# Principales características
+
+✅ Gestión de Leads
+✅ Gestión de Clientes
+✅ Pipeline Comercial
+✅ Gestión de Empresas
+✅ Integración con WhatsApp
+✅ Automatización
+✅ Dashboard
+✅ Multiusuario
+✅ Multiempresa
+✅ Inteligencia Artificial (Roadmap)
+
+---
+
+# ¿Por qué existe TeoCRM?
+
+La mayoría de los CRM fueron diseñados para registrar información.
+
+TeoCRM fue concebido para fortalecer relaciones.
+
+Nace de la combinación de tres disciplinas:
+
+- Ingeniería de Software.
+- Coaching Ontológico.
+- Inteligencia Artificial.
+
+Su propósito es ayudar a emprendedores, coaches, consultores y pequeñas empresas a organizar mejor su trabajo, acompañar a sus clientes con mayor cercanía e impulsar un crecimiento sostenible mediante tecnología con propósito.
+
+Porque creemos que cada relación bien gestionada puede convertirse en una oportunidad para transformar un negocio.
+
+---
+
+# Tecnologías
+
+| Tecnología | Uso |
+|------------|-----|
+| Next.js | Frontend |
+| React | UI |
+| TypeScript | Lenguaje |
+| Tailwind CSS | Estilos |
+| Shadcn/UI | Componentes |
+| Supabase | Base de datos y autenticación |
+| PostgreSQL | Base de datos |
+| Vercel | Despliegue |
+| GitHub | Control de versiones |
+
+---
+
+# Arquitectura
+
+```text
+                    TeoCRM
+
+             Next.js + React
+
+                     │
+
+              API / Server Actions
+
+                     │
+
+                Supabase Platform
+
+       ┌─────────────┴──────────────┐
+
+ Authentication               PostgreSQL
+
+                     │
+
+              WhatsApp Integration
+
+                     │
+
+           AI Services (Próximamente)
+```
+
+---
+
+# Capturas de pantalla
+
+## Login
+
+[Captura Login]
+
+---
+
+## Dashboard
+
+[Captura Dashboard]
+
+---
+
+## Pipeline
+
+[Captura Pipeline]
+
+---
+
+## Contactos
+
+[Captura Contactos]
+
+---
+
+# Instalación
+
+## Clonar el proyecto
 
 ```bash
-# Fork on GitHub first: https://github.com/ArnasDon/wacrm → Fork
-git clone https://github.com/<your-username>/wacrm.git
+git clone https://github.com/teolostaunau/wacrm.git
+
 cd wacrm
+```
+
+---
+
+## Instalar dependencias
+
+```bash
 npm install
-cp .env.local.example .env.local   # fill in Supabase + Meta creds
+```
+
+---
+
+## Variables de entorno
+
+Crear el archivo:
+
+```text
+.env.local
+```
+
+Basado en:
+
+```text
+.env.local.example
+```
+
+Completar:
+
+```
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+SUPABASE_SERVICE_ROLE_KEY=
+NEXT_PUBLIC_SITE_URL=
+```
+
+---
+
+## Ejecutar
+
+```bash
 npm run dev
 ```
 
-Open <http://localhost:3000>. You'll be redirected to `/login` (or
-`/dashboard` if already signed in).
+Abrir:
 
-## 🚀 Deploy on Hostinger (recommended)
+```
+http://localhost:3000
+```
 
-<p align="center">
-  <a href="https://www.hostinger.com/web-apps-hosting">
-    <img src="./.github/assets/hostinger-deploy.png" alt="Ship your Node.js app in one click — Deploy to Hostinger" width="1000">
-  </a>
-</p>
-<p align="center">
-  <a href="https://wacrm.tech/docs/deployment-hostinger">
-    <img src="https://img.shields.io/badge/Step--by--step_guide-wacrm.tech%2Fdocs-111?style=for-the-badge" alt="Step-by-step guide" height="44">
-  </a>
-</p>
+---
 
-**wacrm is built to run on [Hostinger](https://www.hostinger.com/web-apps-hosting).**
-It's the path we test, document, and recommend — and the fastest way
-to get a production-grade CRM live without owning a VPS or a
-Kubernetes cluster.
+# Despliegue
 
-### Why Hostinger?
+TeoCRM está preparado para desplegarse en:
 
-| | |
-|---|---|
-| **One-click Git deploy** | Connect your fork, push to `main`, Hostinger builds and ships it. No SSH, no Docker, no CI to wire up — this repo's own `main` deploys this way. |
-| **Managed Node.js** | Next.js 16 (App Router, server actions, ISR) runs out of the box on [Premium, Business, and Cloud](https://www.hostinger.com/web-apps-hosting) shared plans. You don't manage Node versions, processes, or reverse proxies. |
-| **Free SSL + free domain** | Automatic Let's Encrypt on your custom domain (or a free one included with annual plans). HTTPS is on by default — required for the WhatsApp Business webhook. |
-| **Global CDN + LiteSpeed** | Static assets cached at the edge, dynamic routes served from LiteSpeed. Snappy dashboards out of the box, no Cloudflare setup required. |
-| **Env vars + logs in hPanel** | Set `SUPABASE_*`, `WHATSAPP_*`, and `ENCRYPTION_KEY` from the panel — no `.env` on the server. Live application logs in the same UI. |
-| **DDoS protection + daily backups** | Built-in, no add-ons. The webhook endpoint is a public target — having protection at the edge matters. |
-| **Cheaper than a VPS** | Plans start at a few dollars a month — order-of-magnitude less than a comparable managed Node.js host, and you don't pay extra for the database (that's Supabase). |
-| **24/7 human support** | Live chat support in 20+ languages — useful when your CRM is the thing your team relies on to talk to customers. |
+- Vercel
+- Docker
+- Docker Compose
+- VPS Linux
+- Supabase
 
-### The 60-second version
+Para Vercel:
 
-1. **Fork** this repo on GitHub.
-2. In **hPanel → Websites → Create**, pick **Node.js** and connect
-   your fork.
-3. Paste your Supabase + Meta env vars into hPanel.
-4. Push to `main`. Hostinger builds and serves it. Done.
+1. Conectar el repositorio de GitHub.
+2. Importar las variables de entorno.
+3. Deploy.
 
-Full walkthrough with screenshots:
-**[wacrm.tech/docs/deployment-hostinger](https://wacrm.tech/docs/deployment-hostinger)**.
+---
 
-> _Note: wacrm is MIT-licensed and runs anywhere Node.js does
-> (Vercel, Railway, your own VPS). Hostinger is recommended, not
-> required._
+# Roadmap
 
-## Documentation
+## v1.0 Foundation
 
-Full self-host documentation — Supabase migrations, WhatsApp Business
-API config, and production deploy — lives at
-**[wacrm.tech/docs](https://wacrm.tech/docs)**
-(source: [ArnasDon/wacrm-site](https://github.com/ArnasDon/wacrm-site)).
+- Branding
+- CRM
+- Contactos
+- Empresas
+- Pipeline
+- Dashboard
 
-Key pages:
-- [Getting started](https://wacrm.tech/docs/getting-started)
-- [Supabase setup](https://wacrm.tech/docs/supabase-setup)
-- [WhatsApp setup](https://wacrm.tech/docs/whatsapp-setup)
-- [Environment variables](https://wacrm.tech/docs/environment-variables)
-- [Deploy on Hostinger](https://wacrm.tech/docs/deployment-hostinger)
-- [Architecture](https://wacrm.tech/docs/architecture)
-- [Troubleshooting](https://wacrm.tech/docs/troubleshooting)
+---
 
-## Stack
+## v1.5 Connect
 
-- **App** — Next.js 16 (App Router), React 19, TypeScript, Tailwind v4.
-- **Data** — Supabase (Postgres + Auth + Storage + RLS).
-- **WhatsApp** — Meta Cloud API (official WhatsApp Business API).
+- Automatización
+- WhatsApp
+- Emails
+- Plantillas
 
-## Contributing
+---
 
-This is a template, not a collaborative product — the expected flow is
-fork → customise → deploy, **not** upstream contribution. Bug reports
-and security issues are welcome; feature PRs often belong in your fork
-rather than here. Details in
-[`CONTRIBUTING.md`](./CONTRIBUTING.md) and
-[`.github/SECURITY.md`](./.github/SECURITY.md).
+## v2.0 Intelligence
 
-## License
+- IA
+- Resúmenes automáticos
+- Seguimientos inteligentes
+- Recomendaciones
+- Copiloto
 
-[MIT](./LICENSE). Fork it, brand it, host it.
+---
+
+## v3.0 Enterprise
+
+- Multiempresa
+- Roles avanzados
+- APIs
+- Marketplace
+- Plugins
+
+---
+
+# Documentación
+
+Toda la documentación del proyecto se encuentra en:
+
+```
+docs/
+```
+
+Incluye:
+
+- Visión
+- Arquitectura
+- Roadmap
+- Branding
+- ADR
+- Principios
+- Base de Datos
+
+---
+
+# Filosofía
+
+La tecnología debe potenciar las relaciones humanas.
+
+La Inteligencia Artificial debe asistir al usuario, no reemplazarlo.
+
+Cada decisión del producto busca simplificar el trabajo diario de emprendedores y organizaciones.
+
+---
+
+# Estado del proyecto
+
+Actualmente TeoCRM se encuentra en desarrollo activo.
+
+Versión:
+
+```
+1.0 Alpha
+Codename: Foundation
+```
+
+---
+
+# Desarrollado por
+
+# Teo Technologies
+
+Tecnología con propósito.
+
+---
+
+© 2026 Teo Technologies
