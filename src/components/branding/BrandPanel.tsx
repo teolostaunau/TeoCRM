@@ -4,9 +4,49 @@ import { BrandFooter } from "./BrandFooter";
 
 export function BrandPanel() {
   return (
-    <div className="flex h-full flex-col justify-between bg-primary px-10 py-12 text-primary-foreground">
-      <div className="space-y-8">
-        <Logo size="lg" />
+    <div className="
+    flex h-full flex-col justify-between
+    bg-gradient-to-br
+    from-slate-950
+    via-slate-900
+    to-blue-950
+    text-white
+    px-14
+    py-14
+    relative
+    overflow-hidden">
+    
+    {/* Luz superior izquierda */}
+    <div
+    className="
+        absolute
+        -top-56
+        -left-56
+        h-[700px]
+        w-[700px]
+        rounded-full
+        bg-blue-500/10
+        blur-[120px]
+        pointer-events-none
+    "
+    />
+
+    {/* Luz inferior derecha */}
+    <div
+    className="
+        absolute
+        -bottom-52
+        -right-52
+        h-[600px]
+        w-[600px]
+        rounded-full
+        bg-cyan-400/10
+        blur-[120px]
+        pointer-events-none
+    "
+    />  
+      <div className="relative z-10 space-y-12">
+        <Logo size="xl" />
 
         <Slogan />
 

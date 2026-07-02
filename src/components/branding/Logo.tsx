@@ -20,13 +20,14 @@ export function Logo({
   variant = "default",
   className,
 }: LogoProps) {
-  const iconSize = sizes[size];
+  const iconSize = sizes[size] ?? sizes.md;
 
   return (
     <div
-      className={cn("flex items-center gap-3", className)}
-      aria-label={BRAND.product}
-    >
+    className={cn("flex items-center gap-3", className)}
+    role="img"
+    aria-label={BRAND.product}
+    >   
       <LogoIcon size={iconSize} />
 
       {variant === "default" && (

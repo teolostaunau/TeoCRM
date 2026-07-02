@@ -6,7 +6,7 @@ export function Slogan() {
       {BRAND.slogan.split(". ").map((line) => (
         <h2
           key={line}
-          className="text-3xl font-semibold tracking-tight"
+          className="text-6xl font-bold tracking-tight"
         >
           {line.replace(".", "")}.
         </h2>

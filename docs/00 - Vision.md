@@ -2,20 +2,23 @@
 # TeoCRM
 
 ## Visión
-Crear una plataforma SaaS inteligente que permita a emprendedores, coaches, consultores y pequeñas empresas gestionar de forma integrada sus relaciones con clientes, procesos comerciales, programas de acompañamiento, automatizaciones e inteligencia artificial.
 
-Convertirse en la plataforma inteligente de referencia para la gestión comercial, el acompañamiento y el crecimiento de emprendedores, coaches, consultores y pequeñas empresas en Latinoamérica.
+Ser la plataforma inteligente de referencia para emprendedores, coaches, consultores y pequeñas empresas de Latinoamérica, ayudándoles a gestionar relaciones, automatizar procesos y crecer de forma sostenible mediante inteligencia artificial.
 
 ## Misión
-Ayudar a las organizaciones a construir relaciones duraderas con sus clientes mediante herramientas de CRM, automatización e inteligencia artificial.
+
+Desarrollar una plataforma SaaS moderna que simplifique la gestión comercial, fortalezca las relaciones con los clientes y convierta la tecnología en una ventaja competitiva accesible para todos.
 
 ## Propósito
-Transformar datos en relaciones, procesos en automatizaciones y conocimiento en crecimiento.
 
-## Valores
-Simplicidad
-Automatización
-Escalabilidad
-Inteligencia
-Experiencia de usuario
-Seguridad
+Transformar relaciones en oportunidades, procesos en automatizaciones y datos en decisiones inteligentes.
+
+## Principios
+
+- Simplicidad
+- Confianza
+- Escalabilidad
+- Innovación
+- Automatización
+- Seguridad
+- Experiencia de usuario

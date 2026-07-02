@@ -1,25 +1,45 @@
-## Principio 1
+# Principios de TeoCRM
 
-La simplicidad siempre prevalece sobre la complejidad.
+## 1. Las personas están primero.
 
-## Principio 2
+La tecnología existe para potenciar las relaciones humanas.
 
-La IA debe asistir al usuario.
+---
 
-Nunca reemplazarlo.
+## 2. Simplicidad.
 
-## Principio 3
+Una interfaz sencilla supera a una interfaz compleja.
 
-Todo módulo deberá poder evolucionar de forma independiente.
+---
 
-## Principio 4
+## 3. IA como copiloto.
 
-La experiencia del usuario tiene prioridad sobre la cantidad de funcionalidades.
+La inteligencia artificial asiste al usuario.
 
-## Principio 5
+Nunca toma decisiones por él.
 
-Cada nueva funcionalidad debe responder a una necesidad real del usuario.
+---
 
-## Principio 6
+## 4. Modularidad.
 
-La arquitectura debe prepararse para SaaS desde el primer día.
+Cada módulo puede evolucionar independientemente.
+
+---
+
+## 5. Escalabilidad.
+
+Cada decisión debe facilitar el crecimiento hacia una plataforma SaaS.
+
+---
+
+## 6. Seguridad.
+
+La seguridad se diseña desde el inicio.
+
+---
+
+## 7. Documentar las decisiones.
+
+No documentamos el código.
+
+Documentamos el porqué.
