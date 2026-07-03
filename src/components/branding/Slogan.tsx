@@ -1,3 +1,8 @@
+/**
+ * @deprecated
+ * Será eliminado cuando finalice la migración
+ * al Design System.
+ */
 import { BRAND } from "@/constants/brand";
 
 export function Slogan() {

@@ -1,0 +1,1 @@
+import { BrandLogo } from "@/components/branding";

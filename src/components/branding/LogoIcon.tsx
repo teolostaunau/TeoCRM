@@ -1,28 +1,24 @@
-import { cn } from "@/lib/utils";
+/**
+ * @deprecated
+ * Será eliminado cuando finalice la migración
+ * al Design System.
+ */
+import { BrandIcon } from "./BrandIcon";
 
-interface LogoIconProps {
+export interface LogoIconProps {
   size?: number;
   className?: string;
 }
 
 export function LogoIcon({
-  size = 36,
+  size = 40,
   className,
 }: LogoIconProps) {
   return (
-    <div
-      className={cn(
-        "rounded-xl bg-blue-600 flex items-center justify-center shadow-md",
-        className
-      )}
-      style={{
-        width: size,
-        height: size,
-      }}
-    >
-      <span className="text-white font-bold">
-        T
-      </span>
-    </div>
+    <BrandIcon
+      size={size}
+      className={className}
+      priority
+    />
   );
 }
