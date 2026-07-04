@@ -20,7 +20,8 @@ export function BrandLogo({
   priority = false,
   className,
 }: BrandLogoProps) {
-  const src = BrandAssets.logo[variant].primary;
+  // const src = BrandAssets.logo[variant].primary;
+  const src = BrandAssets.logo[variant].fallback;
   const height = Math.round(width / ASPECT_RATIO[variant]);
 
   return (

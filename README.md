@@ -158,7 +158,7 @@ Porque creemos que cada relación bien gestionada puede convertirse en una oport
 ## Clonar el proyecto
 
 ```bash
-git clone https://github.com/teolostaunau/wacrm.git
+git clone https://github.com/teolostaunau/teocrm.git
 
 cd wacrm
 ```

@@ -1,5 +1,20 @@
 # Changelog
 
+## [v0.3.0] — 2026-07-03
+
+- Rebranding completo a TeoCRM.
+- Creación del Branding Engine.
+- Sistema oficial de assets (SVG/PNG).
+- Documentación de marca.
+- Inicio de la estructura del Design System.
+- Nuevo flujo de trabajo con ramas y versionado.
+
+
+
+
+---
+# Changelog
+
 User-visible changes in `wacrm`. Self-hosters: when pulling an update,
 check this file for any **migration required** notes and apply the
 matching SQL files from `supabase/migrations/` against your Supabase

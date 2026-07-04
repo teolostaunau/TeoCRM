@@ -1,0 +1,54 @@
+Coincido completamente con esa decisión. De hecho, desde una perspectiva de arquitectura de software, seguiría un principio muy importante:
+
+> **No sustituir una tecnología que ya cumple correctamente su función sin una necesidad técnica o de negocio claramente demostrada.**
+
+En el caso de **Teo Platform**, hoy no existe esa necesidad.
+
+### Lo que ya tenemos con Supabase
+
+Supabase nos proporciona una base muy sólida para la etapa actual:
+
+* ✅ PostgreSQL como motor de base de datos.
+* ✅ Autenticación integrada.
+* ✅ Almacenamiento de archivos.
+* ✅ Políticas de seguridad (RLS).
+* ✅ APIs automáticas.
+* ✅ Edge Functions si las necesitamos.
+* ✅ Excelente integración con Vercel.
+* ✅ Amplia documentación y comunidad.
+
+Y, algo que considero muy importante, **ya está integrado en el proyecto**. Cambiar ahora implicaría invertir tiempo en migración, pruebas y ajustes que no aportan valor directo al usuario final.
+
+### Dónde creo que debemos invertir nuestro tiempo
+
+Si pensamos en la visión de **"Gestiona tu negocio con TEO"**, el verdadero valor diferencial no estará en si usamos Supabase o Neon, sino en construir:
+
+* Un excelente **Design System**.
+* Una arquitectura modular y mantenible.
+* Una experiencia de usuario sobresaliente.
+* Automatizaciones inteligentes.
+* Capacidades de IA que ayuden a gestionar el negocio.
+* Módulos funcionales (CRM, ventas, agenda, inventario, finanzas, etc.).
+
+Esos elementos son los que harán que la plataforma destaque.
+
+### Un ADR que dejaría documentado
+
+De hecho, propondría registrar esta decisión como un **Architecture Decision Record (ADR)** para que quede trazabilidad técnica. Algo como:
+
+* **Título:** *ADR-00X — Mantener Supabase como plataforma Backend*
+* **Estado:** Aceptado.
+* **Decisión:** Se adopta Supabase como plataforma de backend para las primeras versiones de Teo Platform. Se reevaluará la adopción de una solución especializada como Neon únicamente cuando existan requerimientos concretos de escalabilidad, rendimiento o separación de responsabilidades que justifiquen el cambio.
+* **Motivación:** Minimizar complejidad, acelerar el desarrollo y aprovechar el ecosistema integrado de Supabase.
+* **Consecuencias:** Se evita una migración prematura y se mantiene la posibilidad de evolucionar hacia una arquitectura más desacoplada en el futuro.
+
+Creo que este tipo de ADR nos ayudará a mantener la coherencia arquitectónica a medida que el proyecto crezca y se incorporen nuevos módulos.
+
+Mi recomendación es que **congelemos esta decisión** y la demos por resuelta. A partir de ahora, cada vez que definamos un componente de la plataforma, asumiremos como base tecnológica:
+
+* **Frontend:** React + Vercel.
+* **Backend:** Supabase.
+* **Base de datos:** PostgreSQL (gestionada por Supabase).
+* **Arquitectura:** Modular, preparada para evolucionar.
+
+De esa manera evitaremos reabrir continuamente el debate tecnológico y podremos concentrarnos en lo más importante: construir una plataforma de alta calidad y entregar funcionalidades de valor de forma iterativa.
