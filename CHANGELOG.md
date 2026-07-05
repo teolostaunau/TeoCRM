@@ -1,6 +1,9 @@
 # Changelog
 
 ## [v0.3.0] — 2026-07-04
+TeoCRM v0.3.0 – Platform Foundation
+
+Primera versión estable de la plataforma. Consolida la arquitectura base, el Design System inicial, la integración con Supabase SSR, la documentación arquitectónica y el proceso de validación para futuras versiones.
 
 ### Added
 - Consolidated Typography Foundation.

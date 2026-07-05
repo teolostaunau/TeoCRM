@@ -73,21 +73,14 @@ Características:
 ## 2. Nodos
 
 Representan:
-
 • clientes
-
 • prospectos
-
 • oportunidades
 
 Los nodos utilizan únicamente tres tamaños.
-
 Nodo XL
-
 Nodo M
-
 Nodo S
-
 Nunca se crearán nuevos tamaños.
 
 ---
@@ -95,7 +88,6 @@ Nunca se crearán nuevos tamaños.
 ## 3. Flecha
 
 La flecha simboliza:
-
 - crecimiento
 - dirección
 - transformación
@@ -159,12 +151,9 @@ Por debajo de esos tamaños debe utilizarse únicamente el isotipo simplificado.
 #081B3A
 
 Uso:
-
-fondos
-
-sidebar
-
-hero
+- fondos
+- sidebar
+- hero
 
 ---
 
@@ -173,8 +162,7 @@ hero
 #0E66F5
 
 Uso:
-
-elementos principales
+- elementos principales
 
 ---
 
@@ -183,12 +171,9 @@ elementos principales
 #00B5E8
 
 Uso:
-
-detalles
-
-hover
-
-conexiones
+- detalles
+- hover
+- conexiones
 
 ---
 
@@ -197,12 +182,9 @@ conexiones
 #FF9800
 
 Uso:
-
-flecha
-
-acciones
-
-CTA
+- flecha
+- acciones
+- CTA
 
 ---
 
@@ -221,23 +203,14 @@ CTA
 # Versiones Permitidas
 
 Master
-
 Horizontal
-
 Vertical
-
 Isotipo
-
 FavIcon
-
 Dark
-
 Light
-
 Negro
-
 Blanco
-
 Escala de grises
 
 ---
@@ -245,19 +218,12 @@ Escala de grises
 # Versiones Prohibidas
 
 No deformar.
-
 No estirar.
-
 No rotar.
-
 No modificar colores.
-
 No agregar sombras externas.
-
 No modificar el grosor.
-
 No alterar la posición de los nodos.
-
 No reemplazar la tipografía.
 
 ---
