@@ -1,0 +1,411 @@
+IMP-DS-04.1 — Implementación de Corporate Blue
+
+**Proyecto:** TEO Platform
+**Sprint:** DS-04.1
+**Estado:** Ready for Development
+**Prioridad:** Alta
+**Riesgo:** Bajo
+
+---
+# 1. Objetivo
+
+Implementar **Corporate Blue** como el tema institucional de TEO Platform, sustituyendo el tema actual **Cobalt** sin modificar la arquitectura del Theme System ni los componentes del Design System.
+
+La implementación debe ser completamente transparente para el resto de la aplicación.
+
+---
+
+# 2. Archivos afectados
+
+## A. Theme Definition
+
+```text
+src/lib/themes.ts
+```
+
+Responsabilidad:
+- Definición de Accent Themes
+- Tema por defecto
+- Metadatos del tema
+
+---
+
+## B. Appearance Panel
+
+```text
+src/components/settings/appearance-panel.tsx
+```
+
+Responsabilidad:
+- Mostrar el nuevo nombre.
+- Mantener el orden.
+- Mostrar Corporate Blue como predeterminado.
+
+---
+## C. (Opcional)
+
+Si existe persistencia del tema:
+
+```text
+localStorage
+cookies
+Supabase profile
+```
+
+Agregar migración.
+
+---
+
+# 3. Cambios
+
+## Paso 1
+
+Renombrar
+
+```ts
+id: "cobalt"
+```
+
+↓
+
+```ts
+id: "corporateBlue"
+```
+
+---
+## Paso 2
+
+Renombrar
+
+```ts
+name: "Cobalt"
+```
+
+↓
+
+```ts
+name: "Corporate Blue"
+```
+
+---
+## Paso 3
+
+Actualizar descripción
+
+Anterior
+
+```text
+Cobalt accent theme
+```
+
+Nuevo
+
+```text
+Official theme for TEO Platform
+```
+
+o
+
+```text
+Professional theme for business applications.
+```
+
+---
+
+## Paso 4
+
+Agregar
+
+```ts
+isOfficial: true
+```
+
+Ejemplo
+
+```ts
+{
+    id: "corporateBlue",
+
+    name: "Corporate Blue",
+
+    description:
+        "Official theme for TEO Platform.",
+
+    isOfficial: true,
+
+    colors: { ... }
+}
+```
+
+---
+
+# 4. Colores
+
+Aquí recomiendo no improvisar.
+
+Debemos obtenerlos desde:
+
+```text
+Brand Assets
+```
+
+y documentarlos.
+
+Ejemplo (solo ilustrativo):
+
+```ts
+primary
+
+#1565F5
+
+hover
+
+#0E57DD
+
+active
+
+#0A49BF
+
+focus
+
+#6EA8FF
+
+foreground
+
+#FFFFFF
+```
+
+No deben aparecer en componentes UI.
+
+---
+
+# 5. Default Theme
+
+Actualmente seguramente exista algo similar a:
+
+```ts
+const DEFAULT_THEME = "cobalt";
+```
+
+↓
+
+```ts
+const DEFAULT_THEME = "corporateBlue";
+```
+
+---
+
+# 6. Migración
+
+Durante Alpha:
+
+```ts
+if (savedTheme === "cobalt") {
+    savedTheme = "corporateBlue";
+}
+```
+
+Una única vez.
+
+Después desaparecerá.
+
+---
+
+# 7. Appearance
+
+Debe mostrarse:
+
+```text
+✓ Corporate Blue
+
+Emerald
+
+Violet
+
+Amber
+
+Rose
+```
+
+Corporate Blue primero.
+
+---
+
+# 8. Compatibilidad
+
+No modificar:
+
+- Button
+    
+- Badge
+    
+- Input
+    
+- Checkbox
+    
+- Dialog
+    
+- Tabs
+    
+- Card
+    
+- Sidebar
+    
+
+Todos consumirán automáticamente los nuevos tokens.
+
+---
+
+# 9. Validación
+
+## Login
+
+- Botón correcto.
+    
+- Links.
+    
+- Focus.
+    
+- Hover.
+    
+
+---
+
+## Dashboard
+
+- Sidebar.
+    
+- Botones.
+    
+- Tabs.
+    
+- Switch.
+    
+- Popover.
+    
+- Dropdown.
+    
+
+---
+
+## Appearance
+
+Debe persistir el cambio.
+
+Cambiar entre temas.
+
+Volver.
+
+Corporate Blue sigue funcionando.
+
+---
+
+# 10. Checklist
+
+## Código
+
+-  Renombrado `cobalt` → `corporateBlue`.
+    
+-  Nombre actualizado.
+    
+-  Descripción actualizada.
+    
+-  `isOfficial` agregado.
+    
+-  Colores actualizados.
+    
+-  Tema por defecto actualizado.
+    
+
+---
+
+## UX
+
+-  Appearance actualizado.
+    
+-  Login actualizado automáticamente.
+    
+-  Dashboard actualizado automáticamente.
+    
+
+---
+
+## QA
+
+-  Sin errores TypeScript.
+    
+-  Sin errores ESLint.
+    
+-  Build correcta.
+    
+-  Dark Mode correcto.
+    
+-  Light Mode correcto.
+    
+
+---
+
+# 11. Rollback
+
+Si ocurre algún problema:
+
+Basta con volver a:
+
+```ts
+id: "cobalt"
+```
+
+No existen cambios estructurales.
+
+El rollback es inmediato.
+
+---
+
+# Riesgo
+
+Lo mejor de esta implementación es que **no toca absolutamente ninguna parte funcional**.
+
+No afecta:
+
+- autenticación
+    
+- Supabase
+    
+- Next.js
+    
+- middleware
+    
+- routing
+    
+- shadcn/ui
+    
+- Design Tokens
+    
+- componentes UI
+    
+
+Solo modifica la **configuración del Theme System**.
+
+Por eso la considero una tarea de **riesgo muy bajo** y con un impacto visual muy alto.
+
+---
+
+# Mi recomendación para el siguiente sprint (DS-04.2)
+
+Creo que este es el momento ideal para dar un pequeño salto de calidad en la arquitectura del sistema de temas. Una vez implementado **Corporate Blue**, propondría que el siguiente sprint (**DS-04.2**) no añada funcionalidades visibles, sino que fortalezca la mantenibilidad del código.
+
+Mi propuesta sería extraer todas las definiciones de los temas desde `src/lib/themes.ts` hacia una estructura modular como esta:
+
+```text
+src/
+├── themes/
+│   ├── corporate-blue.ts
+│   ├── emerald.ts
+│   ├── violet.ts
+│   ├── amber.ts
+│   ├── rose.ts
+│   ├── index.ts
+│   └── types.ts
+```
+
+Con esta organización, cada tema tendría su propio archivo, sería mucho más sencillo incorporar nuevos temas (por ejemplo, un futuro **High Contrast** o **Dark Corporate**) y `themes.ts` dejaría de crecer conforme evolucione la plataforma. No lo haría ahora, porque nuestro objetivo es mantener los cambios pequeños y seguros, pero sí lo dejaría registrado como una mejora técnica para cuando cerremos la versión Alpha de TeoCRM.

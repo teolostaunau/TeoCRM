@@ -1,5 +1,21 @@
 # Changelog
 
+## [v0.3.0] — 2026-07-04
+
+### Added
+- Typography Foundation consolidated.
+- Semantic Typography Tokens.
+- Barrel exports for Design System.
+
+### Changed
+- Removed duplicated typography implementation.
+- Migrated middleware.ts to proxy.ts (Next.js 16).
+- Consolidated Design System typography architecture.
+
+### Fixed
+- TypeScript compilation errors.
+- Broken Design System imports.
+
 ## [v0.3.0] — 2026-07-03
 
 - Rebranding completo a TeoCRM.

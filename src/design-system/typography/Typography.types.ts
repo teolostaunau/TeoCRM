@@ -1,4 +1,4 @@
-import { semanticTypography } from "./semanticTypography";
+import { semanticTypography } from "../tokens";
 import { ReactNode } from "react";
 
 export type TypographyVariant =

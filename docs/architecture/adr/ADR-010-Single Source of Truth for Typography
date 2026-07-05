@@ -1,0 +1,16 @@
+ADR-010 — Single Source of Truth for Typography
+Decisión
+
+La tipografía semántica tendrá una única implementación oficial dentro de:
+
+src/design-system/tokens
+
+Foundation únicamente contendrá valores primitivos.
+
+Los componentes consumirán exclusivamente Tokens.
+
+Consecuencias
+Eliminación de implementaciones duplicadas.
+Menor acoplamiento.
+Mayor facilidad para evolucionar el Design System.
+Base preparada para múltiples temas y personalización futura.

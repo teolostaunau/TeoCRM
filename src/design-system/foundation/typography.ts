@@ -49,5 +49,4 @@ export const typography = {
   fontSize,
   lineHeight,
   letterSpacing,
-  textStyles,
 } as const;
