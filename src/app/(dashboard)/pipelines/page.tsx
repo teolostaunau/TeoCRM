@@ -173,6 +173,9 @@ export default function PipelinesPage() {
   // callbacks (not synchronous in the effect body).
   useEffect(() => {
     if (!selectedPipelineId) {
+      // Limpiamos el estado cuando no hay un pipeline seleccionado.
+      // Esta actualización es intencional y se revisará en una futura
+      // refactorización para eliminar este efecto.
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setStages([]);
       // eslint-disable-next-line react-hooks/set-state-in-effect
