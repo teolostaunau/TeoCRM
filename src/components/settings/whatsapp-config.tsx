@@ -29,6 +29,24 @@ import {
   AccordionContent,
 } from '@/components/ui/accordion';
 import type { WhatsAppConfig as WhatsAppConfigType } from '@/types';
+import { Badge } from "@/components/ui/badge";
+
+type PhoneInfo = {
+  verified_name: string;
+  display_phone_number: string;
+  id: string;
+  quality_rating: string;
+};
+
+function maskPhoneNumberId(id: string) {
+  if (!id) return "";
+
+  if (id.length <= 10) {
+    return `${id.slice(0, 4)}••••${id.slice(-2)}`;
+  }
+
+  return `${id.slice(0, 6)}••••••${id.slice(-4)}`;
+}
 
 const MASKED_TOKEN = '••••••••••••••••';
 
@@ -79,6 +97,14 @@ export function WhatsAppConfig() {
   };
   const [registrationProbe, setRegistrationProbe] =
     useState<RegistrationProbe | null>(null);
+
+  const [phoneInfo, setPhoneInfo] = useState<PhoneInfo | null>(null);
+  const [lastChecked, setLastChecked] = useState<Date | null>(null);
+
+  function clearConnectionInfo() {
+    setPhoneInfo(null);
+    setLastChecked(null);
+  }
 
   const webhookUrl =
     typeof window !== 'undefined'
@@ -270,7 +296,8 @@ export function WhatsAppConfig() {
       setTesting(true);
       const res = await fetch('/api/whatsapp/config', { method: 'GET' });
       const payload = await res.json();
-
+      setPhoneInfo(payload.phone_info ?? null);
+      setLastChecked(new Date());
       if (payload.connected) {
         setConnectionStatus('connected');
         setResetReason(null);
@@ -285,11 +312,15 @@ export function WhatsAppConfig() {
         setResetReason(payload.needs_reset ? 'token_corrupted' : payload.reason === 'meta_api_error' ? 'meta_api_error' : null);
         setStatusMessage(payload.message || '');
         toast.error(payload.message || 'API connection failed');
+        setPhoneInfo(null);
+        setLastChecked(null);
       }
     } catch (err) {
       console.error('Test connection error:', err);
       setConnectionStatus('disconnected');
       toast.error('Connection test failed. Check network and try again.');
+      setPhoneInfo(null);
+      setLastChecked(null);
     } finally {
       setTesting(false);
     }
@@ -744,6 +775,82 @@ export function WhatsAppConfig() {
             </Button>
           )}
         </div>
+        {phoneInfo && (
+          <Card className="mt-6">
+            <CardHeader className="flex flex-row items-start justify-between space-y-0">
+              <div>
+                <CardTitle>Connection Details</CardTitle>
+
+                <CardDescription>
+                  Information returned by the Meta WhatsApp Cloud API.
+                </CardDescription>
+              </div>
+
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={clearConnectionInfo}
+              >
+                Clear
+              </Button>
+            </CardHeader>
+
+            <CardContent>
+              <div className="grid grid-cols-[180px_1fr] gap-y-3 text-sm">
+
+                <span className="text-muted-foreground">Status</span>
+                <Badge
+                  variant="outline"
+                  className="w-fit border-green-700 bg-green-950/40 text-green-400">
+                  Connected
+                </Badge>
+
+                <span className="text-muted-foreground">
+                  Verified Name
+                </span>
+                <span>{phoneInfo.verified_name}</span>
+
+                <span className="text-muted-foreground">
+                  Display Number
+                </span>
+                <span>{phoneInfo.display_phone_number}</span>
+
+                <span className="text-muted-foreground">
+                  Phone Number ID
+                </span>
+                <span className="font-mono text-xs break-all">
+                  {maskPhoneNumberId(phoneInfo.id)}
+                </span>
+
+                <span className="text-muted-foreground">Quality Rating</span>
+                <Badge
+                  variant="outline"
+                  className={
+                    phoneInfo.quality_rating === "GREEN"
+                      ? "w-fit border-green-700 bg-green-950/40 text-green-400"
+                      : phoneInfo.quality_rating === "YELLOW"
+                      ? "w-fit border-yellow-700 bg-yellow-950/40 text-yellow-300"
+                      : "w-fit border-red-700 bg-red-950/40 text-red-400"
+                  }>
+                  {phoneInfo.quality_rating}
+                </Badge>
+                
+                <span className="text-muted-foreground">
+                  Graph API
+                </span>
+                <span>v25.0</span>
+
+                <span className="text-muted-foreground">
+                  Last Check
+                </span>
+                <span>
+                  {lastChecked?.toLocaleString()}
+                </span>
+
+              </div>
+            </CardContent>
+          </Card>
+        )}
       </div>
 
       {/* Setup Instructions Sidebar */}

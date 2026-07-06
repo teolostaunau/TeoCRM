@@ -4,6 +4,7 @@ import { decrypt } from '@/lib/whatsapp/encryption'
 import {
   getSubscribedApps,
   verifyPhoneNumber,
+  MetaPhoneInfo,
 } from '@/lib/whatsapp/meta-api'
 
 /**
@@ -100,18 +101,20 @@ export async function GET() {
   const errors: string[] = []
 
   // 1. Phone metadata
+  let phoneInfo: MetaPhoneInfo | null = null
+
   try {
-    await verifyPhoneNumber({
+    phoneInfo = await verifyPhoneNumber({
       phoneNumberId: config.phone_number_id,
       accessToken,
     })
+
     checks.phone_metadata_ok = true
   } catch (err) {
-    errors.push(
-      `Phone metadata check failed: ${err instanceof Error ? err.message : String(err)}`,
-    )
+  errors.push(
+    `Phone metadata check failed: ${err instanceof Error ? err.message : String(err)}`);
   }
-
+  
   // 2. WABA subscription — only meaningful if we have a waba_id
   if (config.waba_id) {
     try {
@@ -134,6 +137,7 @@ export async function GET() {
         `WABA subscription check failed: ${err instanceof Error ? err.message : String(err)}`,
       )
     }
+    
   } else {
     errors.push(
       'No WABA ID on file — webhooks can\'t be wired without it. Add it in the form and re-save.',
@@ -149,6 +153,30 @@ export async function GET() {
     live,
     checks,
     errors,
+    connection: phoneInfo
+    ? {
+        graphApiVersion:
+          process.env.META_API_VERSION ?? "v25.0",
+
+        verifiedName:
+          phoneInfo.verified_name ?? null,
+
+        displayPhoneNumber:
+          phoneInfo.display_phone_number,
+
+        phoneNumberId:
+          phoneInfo.id,
+
+        businessAccountId:
+          config.waba_id,
+
+        qualityRating:
+          phoneInfo.quality_rating ?? null,
+
+        checkedAt:
+          new Date().toISOString(),
+      }
+    : null,
     last_registration_error: config.last_registration_error ?? null,
     registered_at: config.registered_at ?? null,
     subscribed_apps_at: config.subscribed_apps_at ?? null,
