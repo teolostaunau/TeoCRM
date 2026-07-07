@@ -1,5 +1,23 @@
 # Changelog
 
+## v0.3.1 (2026-07-06)
+
+### Added
+- WhatsApp Cloud API diagnostics panel.
+- Phone metadata verification.
+- Connection status badges.
+- Phone Number ID masking.
+- Clear diagnostics action.
+
+### Changed
+- Graph API upgraded to v25.
+- Improved WhatsApp configuration workflow.
+
+### Fixed
+- Webhook verification improvements.
+- Better Meta authentication diagnostics.
+
+
 ## [v0.3.0] — 2026-07-04
 TeoCRM v0.3.0 – Platform Foundation
 

@@ -1,0 +1,172 @@
+ADR-001 — Filosofía Arquitectónica de TeoCRM
+
+Ésta sería la primera decisión oficial que me gustaría registrar.
+
+Principios
+1. Architecture First
+
+Toda funcionalidad transversal deberá diseñarse antes de implementarse.
+
+Ejemplos:
+
+Design System
+I18N
+Auth
+WhatsApp Engine
+Permissions
+Feature Flags
+
+Nunca construiremos primero el código y después intentaremos ordenarlo.
+
+2. Incremental Evolution
+
+No haremos grandes refactorizaciones.
+
+Siempre construiremos mediante pequeños incrementos.
+
+Es exactamente lo que estamos haciendo con I18N.
+
+3. Stable Public APIs
+
+Los módulos expondrán una API pública estable.
+
+Por ejemplo:
+
+import { useTranslation } from "@/i18n";
+
+y no:
+
+import { translate } from "@/i18n/resolver";
+
+Así podremos reorganizar la implementación interna sin afectar al resto del proyecto.
+
+4. Infrastructure before Features
+
+Cada vez que una funcionalidad vaya a ser utilizada por varios módulos, construiremos primero la infraestructura.
+
+Es justamente lo que estamos haciendo ahora.
+
+5. Composition over Complexity
+
+Preferiremos muchas funciones pequeñas antes que una función enorme.
+
+Ese principio ya se refleja en el Translation Engine.
+
+6. Explicit over Implicit
+
+Los nombres deberán explicar claramente su responsabilidad.
+
+Por ejemplo:
+
+getStoredLanguage()
+
+es preferible a:
+
+getLanguage()
+
+porque elimina ambigüedades.
+
+Quisiera proponerte una visión
+
+Y aquí viene la parte que más me entusiasma.
+
+He estado observando cómo ha evolucionado TeoCRM durante todos estos chats.
+
+Al principio era:
+
+Un CRM conectado con WhatsApp.
+
+Hoy ya no lo veo así.
+
+Hoy veo algo distinto.
+
+Veo esto:
+
+                 TEO Platform
+
+        ┌──────────────────────────────┐
+        │                              │
+        │        Core Services         │
+        │                              │
+        │  • Design System             │
+        │  • Branding                  │
+        │  • I18N                      │
+        │  • Authentication            │
+        │  • Permissions               │
+        │  • Notifications             │
+        │  • Feature Flags             │
+        │  • Storage                   │
+        │                              │
+        └──────────────┬───────────────┘
+                       │
+        ┌──────────────┴───────────────┐
+        │                              │
+        │         Business Apps        │
+        │                              │
+        │  • CRM                       │
+        │  • Marketing                 │
+        │  • Flows                     │
+        │  • Broadcast                 │
+        │  • Automations               │
+        │  • AI                        │
+        │  • Analytics                 │
+        │                              │
+        └──────────────────────────────┘
+
+Y creo que ésta es la dirección correcta.
+
+Porque hace unos días me dijiste una frase que considero muy importante:
+
+"Gestiona tu negocio con TEO."
+
+Esa frase cambió completamente mi percepción del proyecto.
+
+El CRM deja de ser el producto.
+
+El CRM pasa a ser una aplicación dentro de la plataforma TEO.
+
+Y toda la infraestructura que estamos construyendo ahora será compartida por las futuras aplicaciones.
+
+Lo que esto significa para I18N
+
+Si aceptamos esa visión, entonces I18N ya no es "el sistema de traducción del CRM".
+
+Es:
+
+El sistema de internacionalización de toda la plataforma TEO.
+
+Eso cambia el nivel de exigencia.
+
+Y sinceramente creo que es una muy buena noticia, porque significa que estamos invirtiendo en algo que tendrá un enorme retorno durante los próximos años.
+
+Mi primera decisión como Lead Software Architect
+
+Voy a proponerte una regla que, en mi opinión, marcará una diferencia enorme.
+
+Regla N.º 1
+
+Nunca implementaremos una funcionalidad que sepamos que tendremos que rehacer dentro de pocos sprints.
+
+Es preferible invertir un poco más de tiempo en diseñarla correctamente desde el principio, siempre que el costo sea razonable y no retrase innecesariamente el proyecto.
+
+Éste será uno de los filtros que aplicaré a partir de ahora.
+
+Y ahora, pasemos a la implementación
+
+Hasta ahora hemos invertido el tiempo adecuado en arquitectura. Considero que ya tenemos un diseño suficientemente sólido para empezar a producir código de forma sistemática.
+
+A partir del siguiente incremento, cambiaré ligeramente el formato de las entregas:
+
+cada tarea incluirá el objetivo técnico;
+la estructura de archivos que se modifican;
+el código listo para incorporar (adaptado a la estructura real de TeoCRM);
+la validación (lint, typecheck, build);
+y una breve revisión arquitectónica para confirmar que el cambio mantiene la coherencia del proyecto.
+
+Creo que ese formato nos permitirá avanzar mucho más rápido sin perder el nivel de calidad que estamos construyendo.
+
+Una propuesta concreta para nuestro flujo
+
+Para maximizar la productividad, en cada implementación me gustaría que me compartas, cuando sea relevante, la estructura actual de los archivos que vamos a modificar (o el contenido si ya existen). Así evitaré hacer suposiciones sobre el código existente y podré proponerte cambios que se integren de forma natural, minimizando conflictos y refactorizaciones.
+
+Con esa dinámica, podremos trabajar prácticamente como un equipo de ingeniería: tú integrando y validando en el repositorio, y yo diseñando, revisando y entregando implementaciones listas para incorporarse a TeoCRM. Creo que será la forma más eficiente de llevar el proyecto hasta una primera versión sólida y preparada para crecer.

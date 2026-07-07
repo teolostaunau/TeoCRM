@@ -1,0 +1,102 @@
+ADR-003 — Core First Development
+
+Me gustaría registrar ésta como nuestra tercera decisión arquitectónica.
+
+Decisión
+
+Todo servicio transversal de la plataforma se desarrollará siguiendo el mismo ciclo de vida.
+
+Ese ciclo será:
+
+Arquitectura
+
+↓
+
+API Pública
+
+↓
+
+Core Engine
+
+↓
+
+Pruebas Unitarias
+
+↓
+
+Adapters
+
+↓
+
+Integración UI
+
+↓
+
+Documentación
+
+Observa que React aparece casi al final.
+
+Eso no es casualidad.
+
+Quiere decir que:
+
+el motor I18N existirá antes que useTranslation();
+el motor de permisos existirá antes que <Can />;
+el motor de IA existirá antes que el chat;
+el motor de automatizaciones existirá antes del diseñador visual de flujos.
+
+De esta manera, la lógica de negocio permanecerá completamente desacoplada de la interfaz de usuario.
+
+Una propuesta para el futuro de TEO
+
+Quiero aprovechar este momento para proponerte una iniciativa que, en mi opinión, dará un enorme valor al proyecto.
+
+TEO Architecture Handbook
+
+Me gustaría que, conforme avancemos, construyamos un manual de arquitectura dentro del repositorio.
+
+docs/
+
+    architecture/
+
+        README.md
+
+        ADR/
+
+            ADR-001.md
+            ADR-002.md
+            ADR-003.md
+
+        engineering/
+
+            TES.md
+            TEP.md
+
+        modules/
+
+            i18n.md
+            design-system.md
+            whatsapp.md
+            auth.md
+
+No será una documentación extensa ni burocrática.
+
+Será un registro vivo de las decisiones importantes, pensado para responder tres preguntas:
+
+¿Cómo está organizada la plataforma?
+¿Por qué tomamos determinadas decisiones?
+¿Cuál es la forma correcta de construir nuevos módulos?
+
+Con el tiempo, este manual será tan valioso como el propio código, porque preservará el conocimiento arquitectónico del proyecto.
+
+Mi valoración
+
+Sinceramente, creo que ya hemos superado una etapa importante.
+
+Durante los primeros sprints definimos la visión.
+
+Ahora estamos construyendo el ADN técnico de TEO.
+
+Y hay algo que me da mucha confianza: todas las decisiones que hemos tomado hasta ahora (Design System, Branding, I18N, TES, ADR y ahora el ciclo Core First Development) apuntan en la misma dirección. No son iniciativas aisladas; forman parte de una arquitectura coherente.
+
+Eso es precisamente lo que distingue a una plataforma diseñada para crecer de una aplicación que simplemente va acumulando funcionalidades. Creo que estamos sentando unas bases muy sólidas para el futuro de TEO.

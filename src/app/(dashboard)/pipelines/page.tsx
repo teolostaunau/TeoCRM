@@ -178,7 +178,7 @@ export default function PipelinesPage() {
       // refactorización para eliminar este efecto.
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setStages([]);
-      // eslint-disable-next-line react-hooks/set-state-in-effect
+      
       setDeals([]);
       return;
     }
