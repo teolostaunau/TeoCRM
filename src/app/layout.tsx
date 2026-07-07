@@ -2,8 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
-import { ThemeProvider } from "@/hooks/use-theme";
-import { ThemedToaster } from "@/components/themed-toaster";
+// import { ThemeProvider } from "@/hooks/use-theme";
+// import { ThemedToaster } from "@/components/themed-toaster";
 import {
   DEFAULT_MODE,
   DEFAULT_THEME,
@@ -12,6 +12,7 @@ import {
   STORAGE_KEY,
   THEME_IDS,
 } from "@/lib/themes";
+import { Providers } from "./providers";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -105,10 +106,9 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full bg-background text-foreground font-sans">
-        <ThemeProvider>
+        <Providers>
           {children}
-          <ThemedToaster />
-        </ThemeProvider>
+        </Providers>
       </body>
     </html>
   );

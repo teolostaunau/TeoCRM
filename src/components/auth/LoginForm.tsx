@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import type { LoginFormProps } from "./types";
+import { useTranslation } from "@/i18n/react";
 
 export function LoginForm({
   email,
@@ -18,7 +19,8 @@ export function LoginForm({
   onSubmit,
 }: LoginFormProps) 
 {
-  return (
+    const { t } = useTranslation();  
+    return (
     <form onSubmit={onSubmit} className="flex flex-col gap-4">
     {error && (
         <div className="rounded-lg border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm text-red-400">
@@ -28,12 +30,12 @@ export function LoginForm({
 
     <div className="flex flex-col gap-2">
         <Label htmlFor="email" className="text-muted-foreground">
-        Correo electrónico
+        {t("auth.login.email")}
         </Label>
         <Input
         id="email"
         type="email"
-        placeholder="correo@empresa.com"
+        placeholder={t("auth.login.emailPlaceholder")}
         value={email}
         onChange={(e) => onEmailChange(e.target.value)}
         required
@@ -44,19 +46,18 @@ export function LoginForm({
     <div className="flex flex-col gap-2">
         <div className="flex items-center justify-between">
         <Label htmlFor="password" className="text-muted-foreground">
-            Contraseña
+            {t("auth.login.password")}
         </Label>
         <Link
             href="/forgot-password"
-            className="text-sm text-primary hover:text-primary/80"
-        >
-            ¿Olvidaste tu contraseña?
+            className="text-sm text-primary hover:text-primary/80">
+            {t("auth.login.forgotPassword")}
         </Link>
         </div>
         <Input
         id="password"
         type="password"
-        placeholder="Ingresa tu contraseña"
+        placeholder={t("auth.login.passwordPlaceholder")}
         value={password}
         onChange={(e)=>onPasswordChange(e.target.value)}
         required
@@ -67,9 +68,8 @@ export function LoginForm({
     <Button
         type="submit"
         disabled={loading}
-        className="mt-2 h-10 w-full bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-50"
-    >
-        {loading ? "Ingresando..." : "Iniciar sesión"}
+        className="mt-2 h-10 w-full bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-50">
+        {loading ? t("auth.login.buttonLoading") : t("auth.login.button")}
     </Button>
     </form>
   );

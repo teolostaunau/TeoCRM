@@ -1,7 +1,9 @@
 import common from "./common";
+import auth from "./auth";
 
-export default {
-
-    common,
-
+const en = {
+  common,
+  auth,
 };
+
+export default en;

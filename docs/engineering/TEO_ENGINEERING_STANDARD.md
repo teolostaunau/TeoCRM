@@ -170,3 +170,17 @@ docs/
 Allí registraríamos el TES, los ADR y un resumen de cada sprint importante (Design System, I18N, WhatsApp, etc.). No será documentación por obligación, sino una herramienta para preservar el conocimiento del proyecto y mantener la coherencia a medida que TeoCRM crezca.
 
 Creo que ese será uno de los activos más valiosos del proyecto dentro de unos años, cuando miremos atrás y queramos entender no solo el código, sino también las decisiones que nos llevaron hasta él.
+
+## TEO-ENG-006 Developer Language
+Código fuente    
+↓
+Mensajes para desarrolladores        
+   Inglés
+Mensajes para usuarios        
+   i18n
+Logs internos        
+   Inglés
+Excepciones técnicas        
+   Inglés
+UI        
+   i18n

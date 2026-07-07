@@ -10,6 +10,7 @@ import type {
 import { getNestedValue } from "./utils/getNestedValue";
 import { interpolate } from "./utils/interpolate";
 import { handleMissing } from "./utils/handleMissing";
+import { DEFAULT_LANGUAGE } from "./config";
 
 function resolveTranslation(
   language: Language,
@@ -29,7 +30,6 @@ function isTranslationString(
 
 export function translate(
   language: Language,
-  fallbackLanguage: Language,
   key: string,
   params?: TranslationParams,
 ): string {
@@ -46,7 +46,7 @@ export function translate(
   }
 
   const fallback = resolveTranslation(
-    fallbackLanguage,
+    DEFAULT_LANGUAGE,
     key,
   );
 
