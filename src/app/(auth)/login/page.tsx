@@ -16,6 +16,8 @@ import {
 } from "@/components/ui/card";
 import { MessageSquare, UsersRound } from "lucide-react";
 import { AuthLayout } from "@/components/auth/AuthLayout";
+import { useTranslation } from "@/i18n/react";
+import { LanguageSwitcher } from "@/components/common";
 
 
 // `useSearchParams` opts the component out of static prerendering
@@ -45,6 +47,8 @@ function LoginPageInner() {
   const router = useRouter();
   const supabase = createClient();
 
+  const { t } = useTranslation();
+
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
@@ -70,6 +74,9 @@ function LoginPageInner() {
 
   return (
     <AuthLayout>
+      <div className="flex justify-end mb-4">
+        <LanguageSwitcher />
+      </div>
       <Card className="w-full max-w-md border-border bg-card">
         <CardHeader className="items-center text-center">
           <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
@@ -80,12 +87,10 @@ function LoginPageInner() {
             )}
           </div>
           <CardTitle className="text-xl text-foreground">
-            {inviteToken ? "Inicia sesión para empezar" : "Bienvenido(a) a TeoCRM"}
+            {inviteToken ? t("auth.login.invitation.title") : t("auth.login.title")}
           </CardTitle>
           <CardDescription className="text-muted-foreground">
-            {inviteToken
-              ? "Inicia sesión y te entregaremos la invitación."
-              : "Inicia sesión con tu cuenta."}
+            {inviteToken ? t("auth.login.invitation.description") : t("auth.login.description")}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -98,12 +103,12 @@ function LoginPageInner() {
 
             <div className="flex flex-col gap-2">
               <Label htmlFor="email" className="text-muted-foreground">
-                Correo Electrónico
+                {t("auth.login.fields.email.label")}
               </Label>
               <Input
                 id="email"
                 type="email"
-                placeholder="correo@empresa.com"
+                placeholder={t("auth.login.fields.email.placeholder")}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -114,19 +119,18 @@ function LoginPageInner() {
             <div className="flex flex-col gap-2">
               <div className="flex items-center justify-between">
                 <Label htmlFor="password" className="text-muted-foreground">
-                  Contraseña
+                  {t("auth.login.fields.password.label")}
                 </Label>
                 <Link
                   href="/forgot-password"
-                  className="text-sm text-primary hover:text-primary/80"
-                >
-                  ¿Olvidaste tu contraseña?
+                  className="text-sm text-primary hover:text-primary/80">
+                  {t("auth.login.actions.forgotPassword")}
                 </Link>
               </div>
               <Input
                 id="password"
                 type="password"
-                placeholder="Ingresa tu contraseña"
+                placeholder={t("auth.login.fields.password.placeholder")}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
@@ -137,14 +141,13 @@ function LoginPageInner() {
             <Button
               type="submit"
               disabled={loading}
-              className="mt-2 h-10 w-full bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-50"
-            >
-              {loading ? "Ingresando..." : "Iniciar sesión"}
+              className="mt-2 h-10 w-full bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-50">
+              {loading ? t("auth.login.messages.loading") : t("auth.login.actions.signIn")}
             </Button>
           </form>
 
           <p className="mt-6 text-center text-sm text-muted-foreground">
-            ¿No tienes una cuenta?{" "}
+            {t("auth.login.footer.noAccount")}{" "}
             <Link
               href={
                 inviteToken
@@ -153,7 +156,7 @@ function LoginPageInner() {
               }
               className="text-primary hover:text-primary/80"
             >
-              Crear una cuenta
+              {t("auth.login.footer.createAccount")}
             </Link>
           </p>
         </CardContent>

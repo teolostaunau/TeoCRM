@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import type { LoginFormProps } from "./types";
 import { useTranslation } from "@/i18n/react";
+import { LanguageSwitcher } from "@/components/common";
 
 export function LoginForm({
   email,
@@ -27,7 +28,9 @@ export function LoginForm({
         {error}
         </div>
     )}
-
+    <div className="flex justify-end mb-4">
+        <LanguageSwitcher />
+    </div>
     <div className="flex flex-col gap-2">
         <Label htmlFor="email" className="text-muted-foreground">
         {t("auth.login.email")}

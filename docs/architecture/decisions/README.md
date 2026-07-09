@@ -1,0 +1,2 @@
+docs/architecture/decisions/README.md
+Los ADR (Architecture Decision Records) documentan las decisiones arquitectónicas importantes del proyecto. No sustituyen a la documentación técnica; registran el razonamiento detrás de cada decisión para facilitar la evolución de TeoCRM y la incorporación de nuevos colaboradores.

@@ -160,7 +160,7 @@ Porque creemos que cada relación bien gestionada puede convertirse en una oport
 ```bash
 git clone https://github.com/teolostaunau/teocrm.git
 
-cd wacrm
+cd teocrm
 ```
 
 ---
