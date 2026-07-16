@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TeoCRM Vision Prototype - Build 01D</title>
+<style>
+:root{
+--bg:#eef4fb;--bg2:#dfeeff;--nav:#0b1220;--panel:rgba(255,255,255,.78);--line:#d9e4f2;
+--txt:#18212f;--muted:#66758b;--blue:#1d4ed8;--teal:#0ea5a4;--shadow:0 20px 60px rgba(18,38,63,.10);
+}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Segoe UI,sans-serif;background:
+radial-gradient(circle at 20% 0,#d9ebff 0,#eef4fb 45%,#eef4fb 100%);color:var(--txt)}
+.layout{display:grid;grid-template-columns:250px 1fr 330px;min-height:100vh}
+aside{background:var(--nav);color:#dbeafe;padding:26px}
+.logo{font-size:30px;font-weight:800}.tag{opacity:.7;font-size:12px}
+.sec{margin:24px 0 8px;font-size:11px;letter-spacing:.18em;color:#7dd3fc}
+.nav{padding:10px 12px;border-radius:12px}.nav.active,.nav:hover{background:#1e3a8a}
+main{padding:28px}
+.hero{display:grid;grid-template-columns:2fr 1fr;gap:22px;padding:30px;border-radius:28px;background:linear-gradient(135deg,#1d4ed8,#0ea5a4);color:#fff;box-shadow:var(--shadow)}
+.badge{display:inline-block;padding:7px 12px;border-radius:999px;background:#ffffff20}
+.panel{background:var(--panel);backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:22px;padding:20px;box-shadow:var(--shadow)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:20px}
+.signal h4{margin:0;color:var(--muted)} .signal b{font-size:34px}
+.focus{margin-top:20px;display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
+ul{padding-left:18px}
+button{background:#fff;color:#1d4ed8;border:none;padding:12px 16px;border-radius:12px;font-weight:700}
+.right{padding:24px}
+.ai{background:#fff;border-radius:20px;padding:18px;margin-bottom:16px;box-shadow:var(--shadow)}
+.ai .t{font-weight:700;margin-bottom:8px}
+</style></head>
+<body>
+<div class="layout">
+<aside>
+<div class="logo">TeoCRM</div><div class="tag">Growth OS</div>
+<div class="sec">GROWTH CENTER</div><div class="nav active">Centro de Crecimiento</div>
+<div class="sec">CONVERSACIONES</div><div class="nav">Inbox</div><div class="nav">WhatsApp</div>
+<div class="sec">CLIENTES</div><div class="nav">CRM</div><div class="nav">Pipeline</div>
+</aside>
+<main>
+<section class="hero">
+<div>
+<span class="badge">Morning Brief</span>
+<h1>Buenos días, Teo 👋</h1>
+<h3>Tu empresa está teniendo una excelente semana.</h3>
+<p>Hoy detecté tres decisiones que pueden aumentar significativamente tus probabilidades de cerrar una venta.</p>
+<ol>
+<li>Responder a Carlos antes del mediodía.</li>
+<li>Agendar seguimiento con Andrea.</li>
+<li>Enviar la propuesta pendiente a Pedro.</li>
+</ol>
+<button>Comenzar mi día</button>
+</div>
+<div class="panel" style="background:#ffffff18;color:#fff;border-color:#ffffff30">
+<div style="font-size:12px;opacity:.9">Growth Pulse™</div>
+<div style="font-size:72px;font-weight:800">88</div>
+<div><b>SALUDABLE</b> · ↑ +6 esta semana</div>
+<hr style="border-color:#ffffff30">
+<div>Tu IA ya priorizó el trabajo de hoy.</div>
+</div>
+</section>
+
+<div class="grid">
+<div class="panel signal"><h4>Signal · Conversaciones</h4><b>128</b><p>+18% respecto a la semana anterior.</p></div>
+<div class="panel signal"><h4>Signal · Pipeline</h4><b>S/184K</b><p>12 oportunidades activas.</p></div>
+<div class="panel signal"><h4>Signal · Respuesta</h4><b>9 min</b><p>Tiempo medio de respuesta.</p></div>
+</div>
+
+<div class="focus">
+<div class="panel">
+<h2>🎯 Focus Today</h2>
+<p>Completa estas acciones y mejora el pronóstico comercial de la semana.</p>
+<ul>
+<li>Contactar a Carlos.</li>
+<li>Responder 6 conversaciones.</li>
+<li>Cerrar 1 propuesta.</li>
+</ul>
+</div>
+<div class="panel">
+<h2>Workspace Intelligence™</h2>
+<p><b>Información</b><br>3 clientes interactuaron.</p>
+<p><b>Interpretación</b><br>Existe una ventana de oportunidad.</p>
+<p><b>Acción</b><br>Actúa durante la mañana.</p>
+</div>
+</div>
+</main>
+<div class="right">
+<div class="ai"><div class="t">Teo AI Director</div>Empieza por Carlos. Si respondes ahora, aumentas la probabilidad de cierre.</div>
+<div class="ai"><div class="t">Insight</div>Tu tono de conversación es positivo.</div>
+<div class="ai"><div class="t">Guidance</div>No abras el Pipeline todavía. Primero ejecuta tus Focus Actions.</div>
+</div>
+</div>
+</body></html>

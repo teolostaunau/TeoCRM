@@ -1,0 +1,44 @@
+<!DOCTYPE html><html lang='es'><head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width,initial-scale=1'>
+<title>TeoCRM Vision v0.2 Foundation 02</title>
+<style>
+:root{--bg:#eef5ff;--nav:#0f172a;--card:#fff;--pri:#1f5eff;--teal:#12b8a5;--txt:#172233;--mut:#6d7b90;--r:22px}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,sans-serif;background:linear-gradient(#eaf3ff,#f8fbff);color:var(--txt)}
+.app{display:grid;grid-template-columns:260px 1fr;min-height:100vh}
+aside{background:var(--nav);color:#fff;padding:24px}.logo{font-size:30px;font-weight:800}
+nav a{display:block;color:#dbeafe;text-decoration:none;padding:12px;border-radius:12px;margin:6px 0}nav a.active{background:#1e3a8a}
+main{padding:28px}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.search,.profile{background:#fff;border-radius:999px;padding:12px 18px;box-shadow:0 8px 24px rgba(0,0,0,.08)}
+.hero{display:grid;grid-template-columns:2fr 1fr;gap:20px;padding:30px;border-radius:30px;background:linear-gradient(135deg,var(--pri),var(--teal));color:#fff}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:20px}
+.card{background:#fff;border-radius:var(--r);padding:18px;box-shadow:0 10px 28px rgba(0,0,0,.08);transition:.25s}.card:hover{transform:translateY(-4px)}
+.lower{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;margin-top:20px}
+.badge{display:inline-block;padding:6px 10px;background:#ffffff22;border-radius:999px}
+button{padding:12px 18px;border:none;border-radius:12px;font-weight:700}
+</style></head><body>
+<div class='app'><aside><div class='logo'>TeoCRM</div><small>Growth OS</small><nav>
+<a class='active'>Growth Center</a><a>Inbox</a><a>CRM</a><a>Pipeline</a><a>Automatizaciones</a></nav></aside>
+<main><div class='top'><div class='search'>🔎 Buscar…</div><div class='profile'>Teo ▾</div></div>
+<section class='hero'><div><span class='badge'>Morning Brief</span><h1>Buenos días, Teo.</h1>
+<p>Tu negocio muestra una tendencia positiva. La IA preparó el plan óptimo para iniciar el día.</p>
+<button>Comenzar</button></div>
+<div style='display:flex;justify-content:center;align-items:center'>
+<svg viewBox='0 0 120 120' width='190'>
+<circle cx='60' cy='60' r='48' fill='none' stroke='#ffffff33' stroke-width='8'/>
+<circle id='ring' cx='60' cy='60' r='48' fill='none' stroke='white' stroke-width='8' stroke-linecap='round' stroke-dasharray='302' stroke-dashoffset='302' transform='rotate(-90 60 60)'/>
+<text x='60' y='58' text-anchor='middle' fill='white' font-size='28'>88</text>
+<text x='60' y='74' text-anchor='middle' fill='white' font-size='8'>Growth Pulse</text></svg></div></section>
+<div class='grid'>
+<div class='card'><b>Signals</b><h2>128</h2><small>Conversaciones</small></div>
+<div class='card'><b>Insights</b><h2>12</h2><small>Oportunidades</small></div>
+<div class='card'><b>Focus</b><h2>3</h2><small>Acciones críticas</small></div>
+<div class='card'><b>Results</b><h2>92%</h2><small>Satisfacción</small></div>
+</div>
+<div class='lower'>
+<div class='card'><h3>Focus Today</h3><ul><li>Responder a Carlos</li><li>Enviar propuesta</li><li>Cerrar oportunidad</li></ul></div>
+<div class='card'><h3>AI Director</h3><p>Prioriza las conversaciones calientes antes de revisar el pipeline.</p></div>
+</div></main></div>
+<script>
+let o=302,target=36,r=document.getElementById('ring');
+(function a(){o-=2;if(o<target)o=target;r.setAttribute('stroke-dashoffset',o);if(o>target)requestAnimationFrame(a)})();
+</script></body></html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TeoCRM Vision Prototype - Foundation 06</title>
+<style>
+:root{--blue:#2563eb;--teal:#14b8a6;--nav:#0f172a;--bg:#eef4fb;--card:#fff;--line:#dbe5f2;--text:#1f2937}
+*{box-sizing:border-box}body{margin:0;font-family:Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--text)}
+.app{display:grid;grid-template-columns:260px 1fr;min-height:100vh}
+aside{background:var(--nav);color:#fff;padding:20px}
+.logo{font-size:28px;font-weight:700;margin-bottom:4px}.tag{opacity:.8;margin-bottom:20px}
+.menu h4{font-size:11px;opacity:.6;margin:18px 0 8px}.menu a{display:block;color:#dbeafe;text-decoration:none;padding:10px 12px;border-radius:10px}.menu a.active,.menu a:hover{background:#1e3a8a}
+main{padding:22px}
+.header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.search,.user{background:#fff;border:1px solid var(--line);padding:12px 16px;border-radius:12px}
+.hero{display:grid;grid-template-columns:2fr 1fr;gap:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px}
+.gradient{background:linear-gradient(135deg,var(--blue),var(--teal));color:#fff}
+.badge{display:inline-block;background:#22c55e;color:#fff;padding:6px 10px;border-radius:999px;font-size:13px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:18px 0}
+.kpi .v{font-size:28px;font-weight:700;color:var(--blue)}
+.grid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
+ul{padding-left:20px}
+.actions button{margin:6px;padding:10px 12px}
+</style></head>
+<body>
+<div class="app">
+<aside>
+<div class="logo">⬈ TeoCRM</div>
+<div class="tag">Growth Center™</div>
+<div class="menu">
+<a class="active">🏠 Growth Center</a>
+<h4>VENTAS</h4>
+<a>💬 Conversaciones</a><a>🎯 Oportunidades</a><a>👥 Contactos</a><a>🏢 Empresas</a>
+<h4>INTELIGENCIA</h4>
+<a>✨ AI Director</a><a>📈 Reportes</a><a>🔮 Forecast</a>
+<h4>CONFIGURACIÓN</h4>
+<a>⚙ Ajustes</a>
+</div>
+</aside>
+<main>
+<div class="header">
+<div class="search">🔍 Buscar... &nbsp; | Ctrl+K | ❓ Ayuda | 🔔 4</div>
+<div class="user">👤 Teo ▾</div>
+</div>
+
+<div class="hero">
+<div class="card gradient">
+<h1>☀️ Buenos días, Teo.</h1>
+<p>Hoy es un excelente día para hacer crecer tu negocio.</p>
+<p><span class="badge">Estado del negocio: EXCELENTE</span></p>
+<h3>Morning Brief</h3>
+<ol>
+<li>Responder a Carlos Ruiz.</li>
+<li>Enviar propuesta a Andrea.</li>
+<li>Confirmar reunión con Pedro.</li>
+</ol>
+<p><b>Predicción IA:</b> Existe un 87% de probabilidad de cerrar al menos una oportunidad hoy.</p>
+</div>
+
+<div class="card">
+<h2>Growth Pulse™</h2>
+<div style="font-size:64px;color:#2563eb;font-weight:700">93</div>
+<h3>Excelente</h3>
+<p>+18% crecimiento</p>
+<p>+12 conversaciones activas</p>
+<p>+4 oportunidades calientes</p>
+<p><b>La IA recomienda responder primero a Carlos.</b></p>
+</div>
+</div>
+
+<div class="kpis">
+<div class="card kpi"><div class="v">128</div>Conversaciones</div>
+<div class="card kpi"><div class="v">S/245K</div>Pipeline</div>
+<div class="card kpi"><div class="v">23</div>Oportunidades</div>
+<div class="card kpi"><div class="v">5</div>Reuniones</div>
+</div>
+
+<div class="grid">
+<div class="card">
+<h2>Business Timeline</h2>
+<ul>
+<li>09:15 Carlos respondió.</li>
+<li>10:00 Nueva oportunidad creada.</li>
+<li>11:30 Propuesta enviada.</li>
+<li>14:00 Reunión confirmada.</li>
+</ul>
+<h3>Quick Actions</h3>
+<div class="actions">
+<button>Nuevo contacto</button>
+<button>Nueva oportunidad</button>
+<button>Enviar WhatsApp</button>
+<button>Programar reunión</button>
+</div>
+</div>
+
+<div class="card">
+<h2>AI Director</h2>
+<p>He encontrado <b>3 oportunidades</b> para acelerar el crecimiento hoy.</p>
+<ul>
+<li>✅ Carlos Ruiz</li>
+<li>✅ Andrea Gómez</li>
+<li>✅ Reactivar lead inactivo</li>
+</ul>
+<hr>
+<h3>Insights</h3>
+<ul>
+<li>Mayor actividad entre 9 y 11 a.m.</li>
+<li>Pipeline creciendo 18%.</li>
+<li>Tiempo promedio de respuesta: 11 min.</li>
+</ul>
+</div>
+</div>
+</main>
+</div>
+</body></html>

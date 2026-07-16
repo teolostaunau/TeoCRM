@@ -1,0 +1,20 @@
+
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TeoCRM Vision v0.2 Foundation 04</title>
+<style>
+:root{--bg:#eef4fb;--nav:#0f172a;--p:#1f5eff;--t:#14b8a6;--c:#fff;--tx:#1b2430;--m:#6b7a90;--r:22px;--s:0 16px 36px rgba(0,0,0,.08)}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Arial;background:linear-gradient(#edf5ff,#fbfdff);color:var(--tx)}
+.app{display:grid;grid-template-columns:260px 1fr;min-height:100vh}
+aside{background:var(--nav);color:#fff;padding:22px}.logo{font-size:30px;font-weight:800}.nav a{display:block;color:#dbeafe;text-decoration:none;padding:12px;border-radius:12px}.nav a.active,.nav a:hover{background:#1e3a8a}
+main{padding:26px}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}.pill{background:#fff;padding:12px 18px;border-radius:999px;box-shadow:var(--s)}
+.hero{display:grid;grid-template-columns:2fr 1fr;gap:20px;background:linear-gradient(135deg,var(--p),var(--t));padding:30px;border-radius:30px;color:#fff}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:18px 0}.card{background:#fff;border-radius:22px;padding:18px;box-shadow:var(--s)}
+.workspace{display:grid;grid-template-columns:2fr 1fr;gap:18px}.glass{background:rgba(255,255,255,.18);backdrop-filter:blur(10px);padding:10px;border-radius:16px;display:inline-block}
+.timeline li{margin:12px 0}.quick button{margin:6px;padding:10px 14px;border:none;border-radius:10px}
+.ai{background:linear-gradient(180deg,#fff,#f2f8ff)}
+</style></head><body><div class=app><aside><div class=logo>TeoCRM</div><small>Growth OS</small><div class=nav><a class=active>Growth Center</a><a>Inbox</a><a>CRM</a><a>Pipeline</a><a>Analytics</a></div></aside>
+<main><div class=top><div class=pill>🔎 Buscar...</div><div class=pill>🔔 4 &nbsp; 👤 Teo</div></div>
+<section class=hero><div><div class=glass>Morning Brief</div><h1>Tu empresa está creciendo. Hoy tienes 4 oportunidades prioritarias.</h1><p>El sistema preparó automáticamente tu agenda de mayor impacto.</p></div><div style="display:flex;justify-content:center;align-items:center"><svg viewBox="0 0 120 120" width="180"><circle cx=60 cy=60 r=48 fill=none stroke="#ffffff33" stroke-width=8/><circle id=ring cx=60 cy=60 r=48 fill=none stroke=white stroke-width=8 stroke-dasharray=302 stroke-dashoffset=302 stroke-linecap=round transform="rotate(-90 60 60)"/><text x=60 y=58 fill=white text-anchor=middle font-size=28>93</text><text x=60 y=74 fill=white text-anchor=middle font-size=8>Growth Pulse™</text></svg></div></section>
+<div class=grid><div class=card><b>Signals</b><h2>154</h2></div><div class=card><b>Pipeline</b><h2>S/216K</h2></div><div class=card><b>Meetings</b><h2>7</h2></div><div class=card><b>Growth</b><h2>+22%</h2></div></div>
+<div class=workspace><div class=card><h3>Business Timeline</h3><ul class=timeline><li>09:10 Cliente respondió.</li><li>09:45 IA clasificó oportunidad como "Alta".</li><li>10:30 Reunión confirmada.</li><li>11:20 Propuesta enviada.</li></ul><h3>Quick Actions</h3><div class=quick><button>Nueva oportunidad</button><button>Enviar WhatsApp</button><button>Programar reunión</button></div></div><div class="card ai"><h3>AI Director</h3><p><b>Recomendación:</b> dedica los próximos 20 minutos a responder conversaciones calientes; la probabilidad de cierre aumentará.</p><hr><h4>Focus Today</h4><ol><li>Responder Carlos</li><li>Enviar propuesta Andrea</li><li>Seguimiento Pedro</li><li>Revisar Pipeline</li></ol></div></div>
+</main></div><script>let o=302,r=document.getElementById('ring');(function f(){o-=2;if(o<21)o=21;r.setAttribute('stroke-dashoffset',o);if(o>21)requestAnimationFrame(f)})();</script></body></html>

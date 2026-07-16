@@ -1,0 +1,27 @@
+
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TeoCRM Vision v0.2 Foundation 03</title>
+<style>
+:root{--bg:#eef4fb;--nav:#0f172a;--pri:#1f5eff;--teal:#14b8a6;--card:#fff;--txt:#1b2430;--mut:#66758a;--r:22px;--sh:0 14px 32px rgba(0,0,0,.08)}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Arial;background:linear-gradient(#edf5ff,#f8fbff);color:var(--txt)}
+.app{display:grid;grid-template-columns:260px 1fr;min-height:100vh}aside{background:var(--nav);color:#fff;padding:24px}
+.logo{font-size:30px;font-weight:800}.menu a{display:block;padding:12px;color:#dbeafe;text-decoration:none;border-radius:12px}.menu a.active{background:#1e3a8a}
+main{padding:28px}.hero{display:grid;grid-template-columns:2fr 1fr;gap:18px;background:linear-gradient(135deg,var(--pri),var(--teal));padding:30px;border-radius:30px;color:#fff}
+.grid4,.grid2{display:grid;gap:18px}.grid4{grid-template-columns:repeat(4,1fr);margin:20px 0}.grid2{grid-template-columns:1.3fr .7fr}
+.card{background:var(--card);border-radius:var(--r);padding:20px;box-shadow:var(--sh);transition:.25s}.card:hover{transform:translateY(-4px)}
+.timeline li{margin:10px 0}.quick button{margin:6px;padding:10px 14px;border:0;border-radius:12px;background:#e9f1ff}
+.glass{background:rgba(255,255,255,.18);backdrop-filter:blur(8px);padding:10px;border-radius:16px}
+</style></head><body><div class="app"><aside><div class="logo">TeoCRM</div><p>Growth OS</p><div class="menu"><a class="active">Growth Center</a><a>Inbox</a><a>CRM</a><a>Pipeline</a></div></aside><main>
+<section class="hero"><div><div class="glass">Morning Brief</div><h1>Hoy tienes 3 acciones con alto impacto.</h1><p>La IA detectó oportunidades que requieren atención inmediata.</p></div>
+<div style="display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 120 120" width="180"><circle cx="60" cy="60" r="48" fill="none" stroke="#ffffff44" stroke-width="8"/><circle id="ring" cx="60" cy="60" r="48" fill="none" stroke="white" stroke-width="8" stroke-linecap="round" stroke-dasharray="302" stroke-dashoffset="302" transform="rotate(-90 60 60)"/><text x="60" y="58" fill="white" text-anchor="middle" font-size="28">91</text></svg></div></section>
+<div class="grid4">
+<div class="card"><b>Signals</b><h2>147</h2><small>Conversaciones activas</small></div>
+<div class="card"><b>Insights</b><h2>16</h2><small>Oportunidades</small></div>
+<div class="card"><b>Focus</b><h2>4</h2><small>Prioridades</small></div>
+<div class="card"><b>Growth</b><h2>+18%</h2><small>Últimos 30 días</small></div>
+</div>
+<div class="grid2">
+<div class="card"><h3>Business Timeline</h3><ul class="timeline"><li>09:00 Cliente Carlos respondió.</li><li>10:30 Reunión confirmada.</li><li>11:15 Nueva oportunidad creada.</li></ul><div class="quick"><button>Nueva tarea</button><button>Enviar propuesta</button><button>Registrar llamada</button></div></div>
+<div class="card"><h3>AI Director</h3><p>Existe una alta probabilidad de cerrar la oportunidad de Carlos si respondes antes de las 15:00.</p><h4>Focus Today</h4><ol><li>Responder WhatsApp.</li><li>Enviar propuesta.</li><li>Agendar seguimiento.</li></ol></div>
+</div>
+</main></div><script>let o=302,r=document.getElementById('ring');(function f(){o-=2;if(o<27)o=27;r.setAttribute('stroke-dashoffset',o);if(o>27)requestAnimationFrame(f)})();</script></body></html>

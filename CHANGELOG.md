@@ -1,5 +1,28 @@
 # Changelog
 
+## v0.4.0 — Authentication Experience (2026-07-08)
+### Added
+- Internationalization Engine
+- Language Switcher
+- Authentication translations
+- Reset Password page
+- Auth Callback
+- Language Service
+### Improved
+- Login UX
+- Signup UX
+- Hydration consistency
+- Translation architecture
+### Technical
+- SSR compatible authentication
+- Translation namespaces
+- Branding integration
+### Pending
+- SMTP personalizado
+- Emails multilenguaje
+- Traducción de errores de Supabase
+- Auth Polish
+
 ## v0.3.1 (2026-07-06)
 
 ### Added
