@@ -21,9 +21,6 @@ const dashboard = {
     title: "Quick actions",
   },
 
-  loading: {
-    title: "Loading..."
-  }
 };
 
 export default dashboard;

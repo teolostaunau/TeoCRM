@@ -24,6 +24,7 @@ import {
   Zap,
 } from "lucide-react";
 import type { AccountRole } from "@/lib/auth/roles";
+import { useTranslation } from "@/i18n/react";
 
 // Per-role chip metadata used in the sidebar's account strip + the
 // Members tab roster. Keeping this near both consumers in a single
@@ -122,6 +123,7 @@ export function Sidebar({ open = false, onClose }: SidebarProps) {
     !profileLoading &&
     !!account?.name &&
     account.name !== profile?.full_name;
+  const { t } = useTranslation();
 
   // Close the drawer when route changes — users opened it to navigate,
   // so once they pick a destination the drawer should get out of the way.
@@ -346,7 +348,7 @@ export function Sidebar({ open = false, onClose }: SidebarProps) {
                 }
               >
                 <User className="size-4" />
-                Profile
+                {t("common.userMenu.profile")}
               </DropdownMenuItem>
               <DropdownMenuItem
                 render={
@@ -358,7 +360,7 @@ export function Sidebar({ open = false, onClose }: SidebarProps) {
                 }
               >
                 <Settings className="size-4" />
-                Settings
+                {t("common.userMenu.settings")}
               </DropdownMenuItem>
               <DropdownMenuSeparator className="bg-border" />
               <DropdownMenuItem
@@ -366,7 +368,7 @@ export function Sidebar({ open = false, onClose }: SidebarProps) {
                 className="text-popover-foreground focus:bg-accent focus:text-accent-foreground"
               >
                 <LogOut className="size-4" />
-                Sign out
+                {t("common.userMenu.signOut")}
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

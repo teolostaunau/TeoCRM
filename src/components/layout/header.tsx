@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { ModeToggle } from "@/components/layout/mode-toggle";
 import { LanguageSwitcher } from "@/components/common/language-switcher";
+import { useTranslation } from "@/i18n/react";
 
 const pageTitles: Record<string, string> = {
   "/dashboard": "Dashboard",
@@ -47,6 +48,7 @@ export function Header({ onOpenSidebar }: HeaderProps) {
   const pathname = usePathname();
   const { profile, signOut } = useAuth();
   const title = getPageTitle(pathname);
+  const { t } = useTranslation();
 
   const initial =
     profile?.full_name?.charAt(0)?.toUpperCase() ??
@@ -118,7 +120,7 @@ export function Header({ onOpenSidebar }: HeaderProps) {
             }
           >
             <User className="size-4" />
-            Profile
+            {t("common.userMenu.profile")}
           </DropdownMenuItem>
           <DropdownMenuItem
             render={
@@ -129,7 +131,7 @@ export function Header({ onOpenSidebar }: HeaderProps) {
             }
           >
             <SettingsIcon className="size-4" />
-            Settings
+            {t("common.userMenu.settings")}
           </DropdownMenuItem>
           <DropdownMenuSeparator className="bg-border" />
           <DropdownMenuItem
@@ -137,7 +139,7 @@ export function Header({ onOpenSidebar }: HeaderProps) {
             className="text-popover-foreground focus:bg-accent focus:text-accent-foreground"
           >
             <LogOut className="size-4" />
-            Sign out
+            {t("common.userMenu.signOut")}
           </DropdownMenuItem>
         </DropdownMenuContent>
         </DropdownMenu>
