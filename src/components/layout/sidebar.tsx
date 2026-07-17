@@ -88,17 +88,21 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/inbox", label: "Inbox", icon: MessageSquare },
-  { href: "/contacts", label: "Contacts", icon: Users },
-  { href: "/pipelines", label: "Pipelines", icon: GitBranch },
-  { href: "/broadcasts", label: "Broadcasts", icon: Radio },
-  { href: "/automations", label: "Automations", icon: Zap },
-  { href: "/flows", label: "Flows", icon: Workflow, beta: true },
-];
+  { href: "/dashboard", label: "app.navigation.dashboard", icon: LayoutDashboard },
+  { href: "/inbox", label: "app.navigation.inbox", icon: MessageSquare },
+  { href: "/contacts", label: "app.navigation.contacts", icon: Users },
+  { href: "/pipelines", label: "app.navigation.pipelines", icon: GitBranch },
+  { href: "/broadcasts", label: "app.navigation.broadcasts", icon: Radio },
+  { href: "/automations", label: "app.navigation.automations", icon: Zap },
+  { href: "/flows", label: "app.navigation.flows", icon: Workflow, beta: true },
+];  
 
 const bottomNavItems = [
-  { href: "/settings", label: "Settings", icon: Settings },
+  {
+    href: "/settings",
+    label: "app.navigation.settings",
+    icon: Settings,
+  },
 ];
 
 interface SidebarProps {
@@ -222,7 +226,7 @@ export function Sidebar({ open = false, onClose }: SidebarProps) {
                     )}
                   >
                     <item.icon className="h-4 w-4" />
-                    <span className="flex-1">{item.label}</span>
+                    <span className="flex-1">{t(item.label)}</span>
                     {item.beta && (
                       <span
                         aria-label="Beta feature"
@@ -263,7 +267,7 @@ export function Sidebar({ open = false, onClose }: SidebarProps) {
                     )}
                   >
                     <item.icon className="h-4 w-4" />
-                    {item.label}
+                    {t(item.label)}
                   </Link>
                 </li>
               );

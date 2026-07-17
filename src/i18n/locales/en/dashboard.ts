@@ -1,26 +1,24 @@
 const dashboard = {
   title: "Dashboard",
 
-  welcome: {
-    title: "Welcome",
-    subtitle: "Here's an overview of your business.",
-  },
+  description:
+    "Live analytics across conversations, contacts, deals, broadcasts, and automations.",
 
   metrics: {
-    conversations: "Conversations",
-    contacts: "Contacts",
-    pipelines: "Opportunities",
-    broadcasts: "Broadcasts",
-  },
+    activeConversations: "Active Conversations",
+    newContactsToday: "New Contacts Today",
+    openDealsValue: "Open Deals Value",
+    messagesSentToday: "Messages Sent Today",
 
-  activity: {
-    title: "Recent activity",
-  },
+    openDeal: "open deal",
+    openDeals: "open deals",
 
-  quickActions: {
-    title: "Quick actions",
+    delta: {
+      noChange: "No change",
+      vsYesterday: "vs yesterday",
+      newTodayVsYesterday: "new today vs yesterday",
+    },
   },
-
 };
 
 export default dashboard;

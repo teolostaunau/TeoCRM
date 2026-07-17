@@ -3,7 +3,7 @@ const common = {
   cancel: "Cancel",
   close: "Close",
   loading: "Loading...",
-  userMenu: {
+  userMenu: { 
     user: "User",
     profile: "Profile",
     settings: "Settings",

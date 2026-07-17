@@ -1,26 +1,24 @@
 const dashboard = {
-  title: "Panel de Control",
+  title: "Dashboard",
 
-  welcome: {
-    title: "Bienvenido",
-    subtitle: "Aquí tienes un resumen de tu negocio.",
-  },
+  description:
+    "Analítica en tiempo real de conversaciones, contactos, oportunidades, campañas y automatizaciones.",
 
   metrics: {
-    conversations: "Conversaciones",
-    contacts: "Contactos",
-    pipelines: "Oportunidades",
-    broadcasts: "Campañas",
-  },
+    activeConversations: "Conversaciones activas",
+    newContactsToday: "Nuevos contactos hoy",
+    openDealsValue: "Valor de oportunidades abiertas",
+    messagesSentToday: "Mensajes enviados hoy",
 
-  activity: {
-    title: "Actividad reciente",
-  },
+    openDeal: "oportunidad abierta",
+    openDeals: "oportunidades abiertas",
 
-  quickActions: {
-    title: "Acciones rápidas",
+    delta: {
+      noChange: "Sin cambios",
+      vsYesterday: "vs ayer",
+      newTodayVsYesterday: "nuevos hoy vs ayer",
+    },
   },
-
 };
 
 export default dashboard;
