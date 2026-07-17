@@ -26,6 +26,47 @@ const dashboard = {
     newBroadcast: "New Broadcast",
     newAutomation: "New Automation",
   },
+
+  activity: {
+    title: "Recent Activity",
+    viewAll: "View all",
+
+    empty: {
+      title: "No activity yet",
+      hint: "Activity from messages, deals, broadcasts, and automations will appear here.",
+    },
+
+    showing: "Showing {{visible}} of {{total}}",
+
+    show: "Show",
+
+    relative: {
+      seconds: "{{count}}s ago",
+      minutes: "{{count}}m ago",
+      hours: "{{count}}h ago",
+      days: "{{count}}d ago",
+    },
+  },
+
+  conversationsChart: {
+    title: "Conversations Over Time",
+
+    subtitle: "Daily message volume by direction",
+
+    range: "{{days}} days",
+
+    empty: {
+      title: "No message activity in this range",
+      hint: "Send or receive messages to start populating this chart.",
+    },
+
+    legend: {
+      incoming: "Incoming",
+      outgoing: "Outgoing",
+    },
+
+    ariaLabel: "Conversations per day",
+  },
 };
 
 export default dashboard;

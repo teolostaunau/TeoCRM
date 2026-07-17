@@ -26,6 +26,47 @@ const dashboard = {
     newBroadcast: "Nueva difusión",
     newAutomation: "Nueva automatización",
   },
+
+  activity: {
+    title: "Actividad reciente",
+    viewAll: "Ver todo",
+
+    empty: {
+      title: "Aún no hay actividad",
+      hint: "Aquí aparecerá la actividad de mensajes, oportunidades, campañas y automatizaciones.",
+    },
+
+    showing: "Mostrando {{visible}} de {{total}}",
+
+    show: "Mostrar",
+
+    relative: {
+      seconds: "hace {{count}} s",
+      minutes: "hace {{count}} min",
+      hours: "hace {{count}} h",
+      days: "hace {{count}} d",
+    },
+  },
+
+  conversationsChart: {
+    title: "Conversaciones en el tiempo",
+
+    subtitle: "Volumen diario de mensajes por dirección",
+
+    range: "{{days}} días",
+
+    empty: {
+      title: "No hay actividad de mensajes en este período",
+      hint: "Envía o recibe mensajes para comenzar a llenar este gráfico.",
+    },
+
+    legend: {
+      incoming: "Entrantes",
+      outgoing: "Salientes",
+    },
+    
+    ariaLabel: "Conversaciones por día",
+  },
 };
 
 export default dashboard;
