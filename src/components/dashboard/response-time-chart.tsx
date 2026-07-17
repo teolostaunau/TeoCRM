@@ -6,6 +6,7 @@ import type { ResponseTimeSummary } from '@/lib/dashboard/types'
 import { BarChart } from '@/components/tremor/bar-chart'
 import { EmptyState } from './empty-state'
 import { Skeleton } from './skeleton'
+import { useTranslation } from "@/i18n/react"
 
 interface ResponseTimeChartProps {
   data: ResponseTimeSummary | null
@@ -43,35 +44,38 @@ export function ResponseTimeChart({
       samples: b.samples,
     })) ?? []
 
+  const { t } = useTranslation()
+
   return (
     <section className="rounded-xl border border-border bg-card">
       <header className="flex items-center justify-between gap-3 border-b border-border px-5 py-4">
         <div>
           <h2 className="text-sm font-semibold text-foreground">
-            Average First Response Time
+            {t("dashboard.responseTime.title")}
           </h2>
           <p className="mt-0.5 text-xs text-muted-foreground">
-            Minutes to reply to a customer&apos;s first unreplied message, by
-            weekday
+            {t("dashboard.responseTime.subtitle")}
           </p>
         </div>
         <div className="flex items-center gap-3 text-right text-xs">
           {thresholdMinutes > 0 && (
             <span className="rounded-full border border-rose-500/40 bg-rose-500/10 px-2 py-0.5 font-medium text-rose-300 tabular-nums">
-              target {thresholdMinutes}m
+              {t("dashboard.responseTime.target", {
+                minutes: thresholdMinutes,
+              })}
             </span>
           )}
           {data && (data.thisWeekAvg != null || data.lastWeekAvg != null) && (
             <div>
               <div className="text-muted-foreground">
-                This week:{' '}
+                {t("dashboard.responseTime.thisWeek")}{' '}
                 <span className="font-medium text-foreground tabular-nums">
-                  {fmt(data.thisWeekAvg)}
+                  {fmt(data.thisWeekAvg, t)}
                 </span>
               </div>
               <div className="text-muted-foreground">
-                Last week:{' '}
-                <span className="tabular-nums">{fmt(data.lastWeekAvg)}</span>
+                {t("dashboard.responseTime.lastWeek")}{' '}
+                <span className="tabular-nums">{fmt(data.lastWeekAvg, t)}</span>
               </div>
             </div>
           )}
@@ -84,8 +88,8 @@ export function ResponseTimeChart({
         ) : !hasData ? (
           <EmptyState
             icon={Clock}
-            title="No replies recorded yet"
-            hint="This chart fills in as you reply to customer messages."
+            title={t("dashboard.responseTime.empty.title")}
+            hint={t("dashboard.responseTime.empty.hint")}
           />
         ) : (
           <BarChart
@@ -95,7 +99,11 @@ export function ResponseTimeChart({
             // 'violet' maps to Tailwind's `fill-violet-500` — matches
             // the brand accent the hand-rolled bars used (#7c3aed).
             colors={['violet']}
-            valueFormatter={(value) => `${value.toFixed(1)}m`}
+            valueFormatter={(value) =>
+              t("dashboard.responseTime.units.minutes", {
+                value: value.toFixed(1),
+              })
+            }
             showLegend={false}
             yAxisWidth={48}
             // Compact height so the chart sits well inside the card
@@ -108,9 +116,25 @@ export function ResponseTimeChart({
   )
 }
 
-function fmt(mins: number | null): string {
-  if (mins == null) return '—'
-  if (mins < 1) return `${Math.max(1, Math.round(mins * 60))}s`
-  if (mins < 60) return `${mins.toFixed(1)}m`
-  return `${(mins / 60).toFixed(1)}h`
+function fmt(
+  mins: number | null,
+  t: (key: string, params?: Record<string, string | number>) => string,
+): string {
+  if (mins == null) return "—"
+
+  if (mins < 1) {
+    return t("dashboard.responseTime.units.seconds", {
+      value: Math.max(1, Math.round(mins * 60)),
+    })
+  }
+
+  if (mins < 60) {
+    return t("dashboard.responseTime.units.minutes", {
+      value: mins.toFixed(1),
+    })
+  }
+
+  return t("dashboard.responseTime.units.hours", {
+    value: (mins / 60).toFixed(1),
+  })
 }

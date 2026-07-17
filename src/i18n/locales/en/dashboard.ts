@@ -67,6 +67,52 @@ const dashboard = {
 
     ariaLabel: "Conversations per day",
   },
+
+  pipelineValue: {
+    title: "Pipeline Value",
+    subtitle: "Open deals by stage",
+
+    ariaLabel: "Pipeline value by stage",
+
+    total: "Total",
+
+    deals: "{{count}} deal",
+    deals_plural: "{{count}} deals",
+
+    empty: {
+      title: "No open deals yet",
+      hint: "Create deals in Pipelines to see stage breakdowns here.",
+    },
+
+    stages: {
+      new_lead: "New Lead",
+      proposal_sent: "Proposal Sent",
+      won: "Won",
+      lost: "Lost",
+    },
+  },
+
+  responseTime: {
+    title: "Average First Response Time",
+    subtitle:
+      "Minutes to reply to a customer's first unreplied message, by weekday",
+
+    target: "Target {{minutes}}m",
+
+    thisWeek: "This week:",
+    lastWeek: "Last week:",
+
+    empty: {
+      title: "No replies recorded yet",
+      hint: "This chart fills in as you reply to customer messages.",
+    },
+
+    units: {
+      seconds: "{{value}}s",
+      minutes: "{{value}}m",
+      hours: "{{value}}h",
+    },
+  },
 };
 
 export default dashboard;
