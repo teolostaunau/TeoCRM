@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { UserPlus, Briefcase, Radio, Zap } from 'lucide-react'
 import type { ComponentType } from 'react'
+import { useTranslation } from "@/i18n/react";
 
 // Quick-action shortcuts. Each navigates to the page that owns the
 // relevant "create" flow. We deliberately don't try to auto-open any
@@ -15,14 +16,35 @@ interface Action {
   tint: string
 }
 
-const ACTIONS: Action[] = [
-  { label: 'New Contact', href: '/contacts', icon: UserPlus, tint: 'text-primary' },
-  { label: 'New Deal', href: '/pipelines', icon: Briefcase, tint: 'text-blue-400' },
-  { label: 'New Broadcast', href: '/broadcasts/new', icon: Radio, tint: 'text-amber-400' },
-  { label: 'New Automation', href: '/automations/new', icon: Zap, tint: 'text-primary' },
-]
-
 export function QuickActions() {
+    const { t } = useTranslation();
+
+    const ACTIONS: Action[] = [
+      {
+        label: t("dashboard.quickActions.newContact"),
+        href: "/contacts",
+        icon: UserPlus,
+        tint: "text-primary",
+      },
+      {
+        label: t("dashboard.quickActions.newDeal"),
+        href: "/pipelines",
+        icon: Briefcase,
+        tint: "text-blue-400",
+      },
+      {
+        label: t("dashboard.quickActions.newBroadcast"),
+        href: "/broadcasts/new",
+        icon: Radio,
+        tint: "text-amber-400",
+      },
+      {
+        label: t("dashboard.quickActions.newAutomation"),
+        href: "/automations/new",
+        icon: Zap,
+        tint: "text-primary",
+      },
+    ];
   return (
     <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
       {ACTIONS.map((a) => {

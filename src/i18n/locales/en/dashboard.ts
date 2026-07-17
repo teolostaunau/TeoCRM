@@ -19,6 +19,13 @@ const dashboard = {
       newTodayVsYesterday: "new today vs yesterday",
     },
   },
+
+  quickActions: {
+    newContact: "New Contact",
+    newDeal: "New Deal",
+    newBroadcast: "New Broadcast",
+    newAutomation: "New Automation",
+  },
 };
 
 export default dashboard;

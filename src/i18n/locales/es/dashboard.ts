@@ -19,6 +19,13 @@ const dashboard = {
       newTodayVsYesterday: "nuevos hoy vs ayer",
     },
   },
+
+  quickActions: {
+    newContact: "Nuevo contacto",
+    newDeal: "Nueva oportunidad",
+    newBroadcast: "Nueva difusión",
+    newAutomation: "Nueva automatización",
+  },
 };
 
 export default dashboard;
