@@ -97,6 +97,8 @@ const dashboard = {
     subtitle:
       "Minutos para responder el primer mensaje pendiente de un cliente, por día de la semana",
 
+    category: "Minutos promedio",
+
     target: "Meta {{minutes}} min",
 
     thisWeek: "Esta semana:",
@@ -111,6 +113,16 @@ const dashboard = {
       seconds: "{{value}} s",
       minutes: "{{value}} min",
       hours: "{{value}} h",
+    },
+
+    days: {
+      mon: "Lun",
+      tue: "Mar",
+      wed: "Mié",
+      thu: "Jue",
+      fri: "Vie",
+      sat: "Sáb",
+      sun: "Dom",
     },
   },
 };

@@ -97,6 +97,8 @@ const dashboard = {
     subtitle:
       "Minutes to reply to a customer's first unreplied message, by weekday",
 
+    category: "Avg minutes",
+
     target: "Target {{minutes}}m",
 
     thisWeek: "This week:",
@@ -111,6 +113,16 @@ const dashboard = {
       seconds: "{{value}}s",
       minutes: "{{value}}m",
       hours: "{{value}}h",
+    },
+
+    days: {
+      mon: "Mon",
+      tue: "Tue",
+      wed: "Wed",
+      thu: "Thu",
+      fri: "Fri",
+      sat: "Sat",
+      sun: "Sun",
     },
   },
 };

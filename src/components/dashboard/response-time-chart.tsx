@@ -24,7 +24,7 @@ interface ResponseTimeChartProps {
 // per weekday". Tremor expects categories as the second tuple in
 // the row object, so we shape the buckets into
 // `{ day: 'Mon', 'Avg minutes': 4.2 }` rows below.
-const CATEGORY = 'Avg minutes'
+// const CATEGORY = 'Avg minutes'
 
 export function ResponseTimeChart({
   data,
@@ -37,14 +37,16 @@ export function ResponseTimeChart({
   // collapses to 0; the chart will render an empty slot for it.
   // We attach `samples` on the row so a future customTooltip can
   // surface "no samples" copy without losing the data shape.
+  const { t } = useTranslation()
+  const category = t("dashboard.responseTime.category")
   const chartData =
     data?.buckets.map((b, i) => ({
-      day: DOW_SHORT_MON_FIRST[i],
-      [CATEGORY]: b.avgMinutes ?? 0,
+      day: t(
+        `dashboard.responseTime.days.${DOW_SHORT_MON_FIRST[i].toLowerCase()}`
+      ),
+      [category]: b.avgMinutes ?? 0,
       samples: b.samples,
     })) ?? []
-
-  const { t } = useTranslation()
 
   return (
     <section className="rounded-xl border border-border bg-card">
@@ -95,7 +97,7 @@ export function ResponseTimeChart({
           <BarChart
             data={chartData}
             index="day"
-            categories={[CATEGORY]}
+            categories={[category]}
             // 'violet' maps to Tailwind's `fill-violet-500` — matches
             // the brand accent the hand-rolled bars used (#7c3aed).
             colors={['violet']}
