@@ -36,6 +36,7 @@ import {
   MEDIA_MAX_BYTES_BY_KIND,
 } from "@/lib/storage/upload-media";
 import { ReplyQuote } from "./reply-quote";
+import { useTranslation } from '@/i18n/react'
 
 /** Media content types an agent can send from the composer. */
 export type ComposerMediaKind = "image" | "video" | "document" | "audio";
@@ -119,6 +120,7 @@ export function MessageComposer({
   replyTo,
   onClearReply,
 }: MessageComposerProps) {
+  const { t } = useTranslation()
   const [text, setText] = useState("");
   const [sending, setSending] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -390,7 +392,7 @@ export function MessageComposer({
       {sessionExpired && (
         <div className="mb-2 flex items-center justify-between rounded-lg bg-amber-500/10 px-3 py-2">
           <p className="text-xs text-amber-400">
-            24-hour session expired. Use a template to re-engage.
+            {t('inbox.composer.sessionExpired')}
           </p>
           <Button
             variant="ghost"
@@ -399,7 +401,7 @@ export function MessageComposer({
             onClick={onOpenTemplates}
           >
             <LayoutTemplate className="mr-1 h-3 w-3" />
-            Templates
+            {t('inbox.composer.templates')}
           </Button>
         </div>
       )}
@@ -444,6 +446,8 @@ export function MessageComposer({
           onCaptionChange={setCaption}
           onDiscard={discardDraft}
           onSend={sendDraft}
+          t={t}
+          sessionExpired={sessionExpired}
         />
       ) : recording ? (
         // Recording bar — replaces the composer while the mic is live.
@@ -475,13 +479,7 @@ export function MessageComposer({
           <DropdownMenu>
             <DropdownMenuTrigger
               disabled={inputsDisabled || busy}
-              title={
-                readOnly
-                  ? "Read-only — your role can't send messages"
-                  : inputsDisabled
-                    ? undefined
-                    : "Attach media"
-              }
+              title={t('inbox.composer.attachMedia')}
               className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-md p-0 text-muted-foreground hover:text-foreground disabled:cursor-not-allowed disabled:opacity-50"
             >
               {busy ? (
@@ -493,19 +491,19 @@ export function MessageComposer({
             <DropdownMenuContent align="start" className="border-border bg-popover">
               <DropdownMenuItem onClick={() => imageInputRef.current?.click()}>
                 <ImageIcon className="mr-2 h-4 w-4" />
-                Photo
+                {t('inbox.composer.photo')}
               </DropdownMenuItem>
               <DropdownMenuItem onClick={() => videoInputRef.current?.click()}>
                 <Video className="mr-2 h-4 w-4" />
-                Video
+                {t('inbox.composer.video')}
               </DropdownMenuItem>
               <DropdownMenuItem onClick={() => documentInputRef.current?.click()}>
                 <FileText className="mr-2 h-4 w-4" />
-                Document
+                {t('inbox.composer.document')}
               </DropdownMenuItem>
               <DropdownMenuItem onClick={() => void startRecording()}>
                 <Mic className="mr-2 h-4 w-4" />
-                Voice note
+                {t('inbox.composer.voiceNote')}
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -515,7 +513,7 @@ export function MessageComposer({
             size="sm"
             canAct={!readOnly}
             gateReason="send messages"
-            title={readOnly ? undefined : "Send template"}
+            title={readOnly ? undefined : t('inbox.composer.sendTemplate')}
             className="h-9 w-9 shrink-0 p-0 text-muted-foreground hover:text-foreground"
             onClick={onOpenTemplates}
           >
@@ -527,19 +525,17 @@ export function MessageComposer({
             value={text}
             onChange={handleChange}
             onKeyDown={handleKeyDown}
-            placeholder={
-              readOnly
-                ? "Read-only — viewers can browse but not reply"
-                : sessionExpired
-                  ? "Session expired - use a template"
-                  : "Type a message... (Shift+Enter for new line)"
-            }
+            placeholder={t('inbox.composer.messagePlaceholder')}
             disabled={sessionExpired || readOnly}
             rows={1}
             // Textarea keeps its own inline title — the GatedButton
             // wrapping pattern doesn't apply to non-button inputs.
             // The placeholder text also surfaces the read-only state.
-            title={readOnly ? "Read-only — your role can't send messages" : undefined}
+            title={
+              readOnly
+                ? t('inbox.composer.readOnlyTitle')
+                : undefined
+            }
             className={cn(
               "flex-1 resize-none rounded-xl border border-border bg-muted px-4 py-2.5 text-sm text-foreground placeholder-muted-foreground outline-none transition-colors focus:border-primary/50",
               (sessionExpired || readOnly) && "cursor-not-allowed opacity-50"
@@ -564,7 +560,7 @@ export function MessageComposer({
           under the textarea left edge. */}
       {!draft && !recording && (
         <p className="mt-1 pl-[5.5rem] text-[10px] text-muted-foreground">
-          Type &apos;/&apos; for quick replies
+          {t('inbox.composer.quickRepliesHint')}
         </p>
       )}
     </div>
@@ -577,6 +573,8 @@ export function MessageComposer({
  * across the parent's re-renders — a nested component would remount the
  * caption input on every keystroke and drop focus.
  */
+type TranslationParams = Record<string, string | number>
+
 function MediaDraftPreview({
   draft,
   busy,
@@ -584,6 +582,8 @@ function MediaDraftPreview({
   onCaptionChange,
   onDiscard,
   onSend,
+  t,
+  sessionExpired,
 }: {
   draft: MediaDraft;
   busy: boolean;
@@ -591,6 +591,8 @@ function MediaDraftPreview({
   onCaptionChange: (caption: string) => void;
   onDiscard: () => void;
   onSend: () => void;
+  t: (key: string, params?: TranslationParams) => string;
+  sessionExpired: boolean;
 }) {
   return (
     <div className="rounded-xl border border-border bg-muted/40 p-3">
@@ -620,7 +622,7 @@ function MediaDraftPreview({
         <button
           type="button"
           onClick={onDiscard}
-          aria-label="Remove attachment"
+          aria-label={t('inbox.composer.removeAttachment')}
           className="rounded p-1 text-muted-foreground hover:bg-muted hover:text-foreground"
         >
           <X className="h-4 w-4" />
@@ -639,7 +641,13 @@ function MediaDraftPreview({
                 onSend();
               }
             }}
-            placeholder="Add a caption…"
+            placeholder={
+              readOnly
+                ? t('inbox.composer.readOnlyPlaceholder')
+                : sessionExpired
+                  ? t('inbox.composer.sessionExpiredPlaceholder')
+                  : t('inbox.composer.messagePlaceholder')
+            }
             className="flex-1 rounded-xl border border-border bg-muted px-4 py-2.5 text-sm text-foreground placeholder-muted-foreground outline-none transition-colors focus:border-primary/50"
           />
         )}

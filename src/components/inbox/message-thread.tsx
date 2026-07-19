@@ -7,6 +7,7 @@ import { usePresence } from "@/hooks/use-presence";
 import { PresenceDot } from "@/components/presence/presence-dot";
 import { presenceLabel } from "@/lib/presence";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "@/i18n/react";
 import type {
   Conversation,
   Message,
@@ -27,7 +28,7 @@ import {
   PanelRightOpen,
   PanelRightClose,
 } from "lucide-react";
-import { format, isToday, isYesterday, differenceInHours } from "date-fns";
+import { format, differenceInHours } from "date-fns";
 import { Badge } from "@/components/ui/badge";
 import {
   DropdownMenu,
@@ -107,11 +108,42 @@ interface MessageThreadProps {
   onToggleContactPanel?: () => void;
 }
 
-function formatDateSeparator(dateStr: string): string {
-  const date = new Date(dateStr);
-  if (isToday(date)) return "Today";
-  if (isYesterday(date)) return "Yesterday";
-  return format(date, "MMMM d, yyyy");
+type TranslationFunction = ReturnType<typeof useTranslation>['t']
+
+function formatDateSeparator(
+  date: string,
+  t: TranslationFunction,
+  language: string
+) {
+  const d = new Date(date);
+  const now = new Date();
+
+  const isToday =
+    d.getDate() === now.getDate() &&
+    d.getMonth() === now.getMonth() &&
+    d.getFullYear() === now.getFullYear();
+
+  if (isToday) {
+    return t("inbox.date.today");
+  }
+
+  const yesterday = new Date(now);
+  yesterday.setDate(now.getDate() - 1);
+
+  const isYesterday =
+    d.getDate() === yesterday.getDate() &&
+    d.getMonth() === yesterday.getMonth() &&
+    d.getFullYear() === yesterday.getFullYear();
+
+  if (isYesterday) {
+    return t("inbox.date.yesterday");
+  }
+
+  return new Intl.DateTimeFormat(language, {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  }).format(d);
 }
 
 function groupMessagesByDate(messages: Message[]) {
@@ -131,10 +163,30 @@ function groupMessagesByDate(messages: Message[]) {
   return groups;
 }
 
-const STATUS_OPTIONS: { label: string; value: ConversationStatus; color: string }[] = [
-  { label: "Open", value: "open", color: "text-primary" },
-  { label: "Pending", value: "pending", color: "text-amber-400" },
-  { label: "Closed", value: "closed", color: "text-muted-foreground" },
+const STATUS_OPTIONS: {
+  label: string;
+  key: string;
+  value: ConversationStatus;
+  color: string;
+}[] = [
+  {
+    label: "Open",
+    key: "inbox.status.open",
+    value: "open",
+    color: "text-primary",
+  },
+  {
+    label: "Pending",
+    key: "inbox.status.pending",
+    value: "pending",
+    color: "text-amber-400",
+  },
+  {
+    label: "Closed",
+    key: "inbox.status.closed",
+    value: "closed",
+    color: "text-muted-foreground",
+  },
 ];
 
 /**
@@ -164,6 +216,7 @@ export function MessageThread({
   contactPanelOpen,
   onToggleContactPanel,
 }: MessageThreadProps) {
+  const { t, language } = useTranslation();
   const { user } = useAuth();
   const { getPresence, getRow, now } = usePresence();
   const [loading, setLoading] = useState(false);
@@ -218,32 +271,50 @@ export function MessageThread({
     };
   }, []);
 
-  // 24-hour session timer
-  const sessionInfo = useMemo(() => {
-    if (!messages.length) return { expired: false, remaining: "" };
+// 24-hour session timer
+const sessionInfo = useMemo(() => {
+  if (!messages.length) {
+    return { expired: false, remaining: "" };
+  }
 
-    // Find last customer message
-    const lastCustomerMsg = [...messages]
-      .reverse()
-      .find((m) => m.sender_type === "customer");
+  const lastCustomerMsg = [...messages]
+    .reverse()
+    .find((m) => m.sender_type === "customer");
 
-    if (!lastCustomerMsg) return { expired: true, remaining: "No customer messages" };
+  if (!lastCustomerMsg) {
+    return {
+      expired: true,
+      remaining: t("inbox.session.noCustomerMessages"),
+    };
+  }
 
-    const hoursSince = differenceInHours(new Date(), new Date(lastCustomerMsg.created_at));
-    const expired = hoursSince >= 24;
+  const hoursSince = differenceInHours(
+    new Date(),
+    new Date(lastCustomerMsg.created_at)
+  );
 
-    if (expired) {
-      return { expired: true, remaining: "Expired" };
-    }
+  const expired = hoursSince >= 24;
 
-    const hoursLeft = 24 - hoursSince;
-    const remaining =
-      hoursLeft >= 1
-        ? `${Math.floor(hoursLeft)}h remaining`
-        : `${Math.floor(hoursLeft * 60)}m remaining`;
+  if (expired) {
+    return {
+      expired: true,
+      remaining: t("inbox.session.expired"),
+    };
+  }
 
-    return { expired, remaining };
-  }, [messages]);
+  const hoursLeft = 24 - hoursSince;
+
+  const remaining =
+    hoursLeft >= 1
+      ? t("inbox.session.hoursRemaining", {
+          hours: Math.floor(hoursLeft),
+        })
+      : t("inbox.session.minutesRemaining", {
+          minutes: Math.floor(hoursLeft * 60),
+        });
+
+  return { expired, remaining };
+}, [messages, t]);
 
   // Store latest callback in a ref so fetchMessages doesn't need to
   // depend on `onMessagesLoaded` — otherwise parent re-renders cause
@@ -787,10 +858,10 @@ export function MessageThread({
           <MessageSquare className="h-8 w-8 text-muted-foreground" />
         </div>
         <h3 className="mt-4 text-sm font-medium text-muted-foreground">
-          Select a conversation
+          {t("inbox.emptyState.selectConversation")}
         </h3>
         <p className="mt-1 text-xs text-muted-foreground">
-          Choose a conversation from the left to start messaging
+          {t("inbox.emptyState.chooseConversation")}
         </p>
       </div>
     );
@@ -801,12 +872,12 @@ export function MessageThread({
   const currentStatus = STATUS_OPTIONS.find(
     (s) => s.value === conversation.status
   );
-  const assignedAgentId = conversation.assigned_agent_id ?? null;
-  const currentAssignee = profiles.find((p) => p.user_id === assignedAgentId);
-  const assignLabel = assignedAgentId
-    ? (currentAssignee?.full_name ?? "Assigned")
-    : "Assign";
-
+const assignedAgentId = conversation.assigned_agent_id ?? null;
+const currentAssignee = profiles.find((p) => p.user_id === assignedAgentId);
+const assignLabel = assignedAgentId
+  ? (currentAssignee?.full_name ?? t("inbox.assign.assigned"))
+  : t("inbox.assign.assign");
+ 
   return (
     // `min-w-0` is load-bearing: the page already puts min-w-0 on the
     // thread's flex *wrapper* (issue #165), but this root keeps the
@@ -910,22 +981,22 @@ export function MessageThread({
                   "inline-flex items-center justify-center h-7 gap-1 px-2 text-xs rounded-md hover:bg-muted",
                   currentStatus?.color ?? "text-muted-foreground"
                 )}>
-                {currentStatus?.label ?? "Status"}
+                {currentStatus ? t(currentStatus.key) : t("inbox.status.label")}
                 <ChevronDown className="h-3 w-3" />
             </DropdownMenuTrigger>
             <DropdownMenuContent
               align="end"
               className="border-border bg-popover"
             >
-              {STATUS_OPTIONS.map((opt) => (
-                <DropdownMenuItem
-                  key={opt.value}
-                  onClick={() => handleStatusChange(opt.value)}
-                  className={cn("text-sm", opt.color)}
-                >
-                  {opt.label}
-                </DropdownMenuItem>
-              ))}
+            {STATUS_OPTIONS.map((opt) => (
+              <DropdownMenuItem
+                key={opt.value}
+                onClick={() => handleStatusChange(opt.value)}
+                className={cn("text-sm", opt.color)}
+              >
+                {t(opt.key)}
+              </DropdownMenuItem>
+            ))}
             </DropdownMenuContent>
           </DropdownMenu>
 
@@ -945,52 +1016,66 @@ export function MessageThread({
               align="end"
               className="border-border bg-popover"
             >
-              {profiles.length === 0 ? (
-                <DropdownMenuItem disabled className="text-sm text-muted-foreground">
-                  No teammates available
-                </DropdownMenuItem>
-              ) : (
-                profiles.map((p) => {
-                  const isSelected = p.user_id === assignedAgentId;
-                  const presence = getPresence(p.user_id);
-                  return (
-                    <DropdownMenuItem
-                      key={p.id}
-                      onClick={() => handleAssignChange(p.user_id)}
-                      className={cn(
-                        "text-sm",
-                        isSelected ? "text-primary" : "text-popover-foreground"
-                      )}
-                    >
-                      <PresenceDot
-                        status={presence}
-                        label={presenceLabel(
-                          presence,
-                          getRow(p.user_id)?.last_seen_at ?? null,
-                          now
-                        )}
-                        className="mr-2"
-                      />
-                      <span className="flex-1">
-                        {p.full_name}
-                        {p.user_id === user?.id ? " (me)" : ""}
-                      </span>
-                      {isSelected && <Check className="ml-2 h-3 w-3" />}
-                    </DropdownMenuItem>
-                  );
-                })
-              )}
-              {assignedAgentId && (
-                <>
-                  <DropdownMenuSeparator className="bg-border" />
-                  <DropdownMenuItem
-                    onClick={() => handleAssignChange(null)}
-                    className="text-sm text-muted-foreground"
-                  >
-                    Unassign
-                  </DropdownMenuItem>
-                </>
-              )}
+{profiles.length === 0 ? (
+  <DropdownMenuItem
+    disabled
+    className="text-sm text-muted-foreground"
+  >
+    {t("inbox.assign.noTeammates")}
+  </DropdownMenuItem>
+) : (
+  profiles.map((p) => {
+    const isSelected = p.user_id === assignedAgentId;
+    const presence = getPresence(p.user_id);
+
+    return (
+      <DropdownMenuItem
+        key={p.id}
+        onClick={() => handleAssignChange(p.user_id)}
+        className={cn(
+          "text-sm",
+          isSelected
+            ? "text-primary"
+            : "text-popover-foreground"
+        )}
+      >
+        <PresenceDot
+          status={presence}
+          label={presenceLabel(
+            presence,
+            getRow(p.user_id)?.last_seen_at ?? null,
+            now
+          )}
+          className="mr-2"
+        />
+
+        <span className="flex-1">
+          {p.full_name}
+          {p.user_id === user?.id
+            ? ` (${t("inbox.assign.me")})`
+            : ""}
+        </span>
+
+        {isSelected && (
+          <Check className="ml-2 h-3 w-3" />
+        )}
+      </DropdownMenuItem>
+    );
+  })
+)}
+
+{assignedAgentId && (
+  <>
+    <DropdownMenuSeparator className="bg-border" />
+
+    <DropdownMenuItem
+      onClick={() => handleAssignChange(null)}
+      className="text-sm text-muted-foreground"
+    >
+      {t("inbox.assign.unassign")}
+    </DropdownMenuItem>
+  </>
+)}
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
@@ -1016,7 +1101,7 @@ export function MessageThread({
                 {/* Date separator */}
                 <div className="mb-4 flex items-center justify-center">
                   <span className="rounded-full bg-muted px-3 py-1 text-[10px] font-medium text-muted-foreground">
-                    {formatDateSeparator(group.date)}
+                    {formatDateSeparator(group.date, t, language)}
                   </span>
                 </div>
                 {/* Messages */}
