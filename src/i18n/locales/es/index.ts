@@ -3,13 +3,15 @@ import auth from "./auth";
 import dashboard from "./dashboard";
 import app from "./app";
 import inbox from "./inbox";
+import contacts from "./contacts";
 
 const es = {
   common,
   auth,
-  dashboard,  
+  dashboard,
   app,
   inbox,
+  contacts,
 };
 
 export default es;
