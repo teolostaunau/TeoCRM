@@ -5,6 +5,7 @@ import app from "./app";
 import inbox from "./inbox";
 import contacts from "./contacts";
 import pipelines from "./pipelines";
+import broadcasts from "./broadcasts";
 
 const en = {
   common,
@@ -14,6 +15,7 @@ const en = {
   inbox,
   contacts,
   pipelines,
+  broadcasts,
 };
 
 export default en;
