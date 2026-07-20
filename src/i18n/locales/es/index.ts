@@ -4,6 +4,7 @@ import dashboard from "./dashboard";
 import app from "./app";
 import inbox from "./inbox";
 import contacts from "./contacts";
+import pipelines from "./pipelines";
 
 const es = {
   common,
@@ -12,6 +13,7 @@ const es = {
   app,
   inbox,
   contacts,
+  pipelines,
 };
 
 export default es;
