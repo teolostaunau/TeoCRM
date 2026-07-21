@@ -767,7 +767,7 @@ function TriggerCard({
           <div className="space-y-3 border-t border-border px-4 py-3">
             <div>
               <label className="mb-1 block text-xs font-medium text-muted-foreground">
-                {t("automations.builder.general.trigger_type")}
+                {t("automations.builder.general.triggerType")}
               </label>
               <select
                 value={type}

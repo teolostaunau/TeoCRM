@@ -144,6 +144,7 @@ const automations = {
       schedule: "Expresión cron o HH:mm",
       keywords: "ej. precios, solicitud de demo, hablar con ventas",
       messageText: "¡Hola! Gracias por escribirnos…",
+      selectTag: "Selecciona una etiqueta…",
       contactField: "nombre / correo / empresa",
       tagId: "ID de la etiqueta",
       messageVariables: "Texto o {{ vars.x }} / {{ message.text }}",
