@@ -6,6 +6,7 @@ import inbox from "./inbox";
 import contacts from "./contacts";
 import pipelines from "./pipelines";
 import broadcasts from "./broadcasts";
+import automations from "./automations";
 
 const es = {
   common,
@@ -16,6 +17,7 @@ const es = {
   contacts,
   pipelines,
   broadcasts,
+  automations,
 };
 
 export default es;
