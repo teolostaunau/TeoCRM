@@ -12,7 +12,7 @@ export function BrandPanel() {
     to-blue-950
     text-white
     px-14
-    py-14
+    py-8
     relative
     overflow-hidden">
     
@@ -45,18 +45,18 @@ export function BrandPanel() {
         pointer-events-none
     "
     />  
-      <div className="relative z-10 space-y-12">
+      <div className="relative z-10 space-y-6">
         <Logo size="xl" />
 
         <Slogan />
 
-        <p className="max-w-md text-lg opacity-90">
+        <p className="max-w-md text-base opacity-90">
           Organiza tus relaciones, acompaña a tus clientes e impulsa el
           crecimiento de tu negocio con una plataforma moderna preparada para
           Inteligencia Artificial.
         </p>
 
-        <ul className="space-y-2 text-sm opacity-90">
+        <ul className="space-y-1 text-sm opacity-90">
           <li>✓ CRM Inteligente</li>
           <li>✓ Automatización</li>
           <li>✓ Integración con WhatsApp</li>
