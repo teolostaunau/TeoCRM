@@ -1,4 +1,21 @@
 const broadcasts = {
+  status: {
+    broadcast: {
+      draft: "Draft",
+      scheduled: "Scheduled",
+      sending: "Sending",
+      sent: "Sent",
+      failed: "Failed",
+    },
+    recipient: {
+      pending: "Pending",
+      sent: "Sent",
+      delivered: "Delivered",
+      read: "Read",
+      replied: "Replied",
+      failed: "Failed",
+    },
+  },
   steps: {
     chooseTemplate: {
       title: "Choose a Template",
@@ -79,6 +96,7 @@ const broadcasts = {
           missing: "A media URL is required to send this template.",
           invalid: "Enter a valid http(s) URL.",
         },
+        altPreview: "Header preview",
       },
       emptyState: "This template has no variables to personalize.",
       mapping: {
@@ -222,6 +240,8 @@ const broadcasts = {
         confirm: "Confirm",
         disabledSending: "Cannot delete while a broadcast is actively sending",
         button: "Delete",
+        failed: "Failed to delete: {{message}}",
+        success: "Broadcast deleted",
       },
       stats: {
         totalRecipients: "Total Recipients",
@@ -250,11 +270,21 @@ const broadcasts = {
           contact: "Contact",
           phone: "Phone",
           status: "Status",
-          sent: "Sent",
-          delivered: "Delivered",
-          read: "Read",
+          sentAt: "Sent At",
+          deliveredAt: "Delivered At",
+          readAt: "Read At",
           error: "Error",
           unknownContact: "Unknown",
+        },
+        csv: {
+          contact: "Contact",
+          phone: "Phone",
+          status: "Status",
+          sentAt: "Sent At",
+          deliveredAt: "Delivered At",
+          readAt: "Read At",
+          repliedAt: "Replied At",
+          error: "Error",
         },
       },
     },

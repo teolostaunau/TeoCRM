@@ -202,14 +202,14 @@ export default function BroadcastDetailPage() {
   function handleExport() {
     if (!broadcast) return;
     const header = [
-      'Contact',
-      'Phone',
-      'Status',
-      'Sent At',
-      'Delivered At',
-      'Read At',
-      'Replied At',
-      'Error',
+      t('broadcasts.pages.detail.recipients.csv.contact'),
+      t('broadcasts.pages.detail.recipients.csv.phone'),
+      t('broadcasts.pages.detail.recipients.csv.status'),
+      t('broadcasts.pages.detail.recipients.csv.sentAt'),
+      t('broadcasts.pages.detail.recipients.csv.deliveredAt'),
+      t('broadcasts.pages.detail.recipients.csv.readAt'),
+      t('broadcasts.pages.detail.recipients.csv.repliedAt'),
+      t('broadcasts.pages.detail.recipients.csv.error'),
     ];
     const rows = recipients.map((r) => [
       r.contact?.name ?? '',
@@ -239,10 +239,10 @@ export default function BroadcastDetailPage() {
       .eq('id', broadcastId);
     setDeleting(false);
     if (delErr) {
-      toast.error(`Failed to delete: ${delErr.message}`);
+      toast.error(t('broadcasts.pages.detail.delete.failed', { message: delErr.message }));
       return;
     }
-    toast.success('Broadcast deleted');
+    toast.success(t('broadcasts.pages.detail.delete.success'));
     router.push('/broadcasts');
   }
 
@@ -293,7 +293,7 @@ export default function BroadcastDetailPage() {
               <span
                 className={`inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-medium ${status.classes}`}
               >
-                {status.label}
+                {t(status.labelKey)}
               </span>
             </div>
             <div className="mt-1 flex items-center gap-3 text-sm text-muted-foreground">
@@ -402,8 +402,10 @@ export default function BroadcastDetailPage() {
       <div className="rounded-xl border border-border bg-card">
         <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border px-4 py-3">
           <h2 className="text-sm font-medium text-foreground">
-            Recipients ({filteredRecipients.length}
-            {statusFilter !== 'all' ? ` of ${recipients.length}` : ''})
+            {t('broadcasts.pages.detail.recipients.title', {
+              count: filteredRecipients.length,
+              total: statusFilter !== 'all' ? ` of ${recipients.length}` : '',
+            })}
           </h2>
           <div className="flex items-center gap-2">
             <DropdownMenu>
@@ -419,7 +421,7 @@ export default function BroadcastDetailPage() {
                 <Filter className="h-3.5 w-3.5" />
                 {statusFilter === 'all'
                   ? t('broadcasts.pages.detail.recipients.filters.all')
-                  : getRecipientStatus(statusFilter).label}
+                  : t(getRecipientStatus(statusFilter).labelKey)}
                 <ChevronDown className="h-3 w-3" />
               </DropdownMenuTrigger>
               <DropdownMenuContent className="border-border bg-popover">
@@ -441,7 +443,7 @@ export default function BroadcastDetailPage() {
                         : 'text-popover-foreground'
                     }
                   >
-                    {getRecipientStatus(s).label}
+                    {t(getRecipientStatus(s).labelKey)}
                   </DropdownMenuItem>
                 ))}
               </DropdownMenuContent>
@@ -497,7 +499,7 @@ export default function BroadcastDetailPage() {
                         <span
                           className={`inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-medium ${rStatus.classes}`}
                         >
-                          {rStatus.label}
+                          {t(rStatus.labelKey)}
                         </span>
                       </TableCell>
                       <TableCell className="text-muted-foreground">

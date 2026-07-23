@@ -1,4 +1,21 @@
 const broadcasts = {
+  status: {
+    broadcast: {
+      draft: "Borrador",
+      scheduled: "Programada",
+      sending: "Enviando",
+      sent: "Enviada",
+      failed: "Fallida",
+    },
+    recipient: {
+      pending: "Pendiente",
+      sent: "Enviado",
+      delivered: "Entregado",
+      read: "Leído",
+      replied: "Respondido",
+      failed: "Fallido",
+    },
+  },
   steps: {
     chooseTemplate: {
       title: "Elegir una plantilla",
@@ -79,6 +96,7 @@ const broadcasts = {
           missing: "Se requiere una URL para enviar esta plantilla.",
           invalid: "Ingresa una URL http(s) válida.",
         },
+        altPreview: "Vista previa del encabezado",
       },
       emptyState: "Esta plantilla no tiene variables para personalizar.",
       mapping: {
@@ -222,6 +240,8 @@ const broadcasts = {
         confirm: "Confirmar",
         disabledSending: "No se puede eliminar mientras la difusión está enviándose",
         button: "Eliminar",
+        failed: "No se pudo eliminar: {{message}}",
+        success: "Difusión eliminada",
       },
       stats: {
         totalRecipients: "Total de destinatarios",
@@ -250,11 +270,21 @@ const broadcasts = {
           contact: "Contacto",
           phone: "Teléfono",
           status: "Estado",
-          sent: "Enviado",
-          delivered: "Entregado",
-          read: "Leído",
+          sentAt: "Enviado el",
+          deliveredAt: "Entregado el",
+          readAt: "Leído el",
           error: "Error",
           unknownContact: "Desconocido",
+        },
+        csv: {
+          contact: "Contacto",
+          phone: "Teléfono",
+          status: "Estado",
+          sentAt: "Enviado el",
+          deliveredAt: "Entregado el",
+          readAt: "Leído el",
+          repliedAt: "Respondido el",
+          error: "Error",
         },
       },
     },

@@ -272,7 +272,7 @@ export function Step3Personalize({
               // eslint-disable-next-line @next/next/no-img-element
               <img
                 src={headerMediaUrl.trim()}
-                alt="Header preview"
+                alt={t('broadcasts.steps.personalize.headerMedia.altPreview')}
                 className="mt-3 max-h-40 rounded-lg border border-border object-contain"
               />
             )}
