@@ -47,6 +47,10 @@ const contacts = {
     },
   },
   page: {
+    gateReasons: {
+      addOrImport: "add or import contacts",
+      delete: "delete contacts",
+    },
     header: {
       title: "Contacts",
       description: "Manage your contact list. {{count}} total contacts.",
@@ -147,6 +151,13 @@ const contacts = {
       customFields: "No custom fields defined. Create them in Settings.",
       deals: "No deals yet",
     },
+    deals: {
+      status: {
+        won: "Won",
+        lost: "Lost",
+        open: "Open",
+      },
+    },
     messages: {
       phoneRequired: "Phone number is required",
       updateSuccess: "Contact updated",
@@ -224,6 +235,9 @@ const contacts = {
       cancel: "Cancel",
       import: "Import {{count}} contact{{plural}}",
     },
+    tags: {
+      willBeCreated: "{{name}} (will be created on import)",
+    },
     messages: {
       authRequired: "Not authenticated",
       accountRequired: "Your profile is not linked to an account.",
@@ -232,6 +246,7 @@ const contacts = {
       tagsSuccess: "{{count}} tag assignment{{plural}} applied",
       tagsWarning: "Contacts imported, but some tag assignments failed.",
       tagsInfo: "Unknown tags skipped (create them in Settings first): {{sample}}",
+      tagsMore: "(+{{count}} more)",
       importFailed: "Import failed",
       duplicatesSkipped: "{{count}} duplicate{{plural}} skipped",
       failed: "{{count}} contact{{plural}} failed to import",

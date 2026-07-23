@@ -743,7 +743,7 @@ export function ContactDetailView({
                                   : 'text-red-400'
                               }
                             >
-                              {deal.status}
+                              {t(`contacts.detail.deals.status.${deal.status}` as Parameters<typeof t>[0])}
                             </span>
                           )}
                         </div>

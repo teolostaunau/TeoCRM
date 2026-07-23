@@ -148,6 +148,9 @@ const broadcasts = {
   },
   pages: {
     list: {
+      gateReasons: {
+        create: "crear difusiones",
+      },
       errors: {
         load: "No se pudieron cargar las difusiones",
       },

@@ -72,6 +72,9 @@ const inbox = {
   },
 
   composer: {
+    gateReasons: {
+      send: "send messages",
+    },
     sessionExpired: "24-hour session expired. Use a template to re-engage.",
     templates: "Templates",
 

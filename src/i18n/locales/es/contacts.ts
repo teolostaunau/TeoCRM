@@ -47,6 +47,10 @@ const contacts = {
     },
   },
   page: {
+    gateReasons: {
+      addOrImport: "agregar o importar contactos",
+      delete: "eliminar contactos",
+    },
     header: {
       title: "Contactos",
       description: "Administra tu lista de contactos. {{count}} contactos en total.",
@@ -147,6 +151,13 @@ const contacts = {
       customFields: "No hay campos personalizados definidos. Crea algunos en Configuración.",
       deals: "Aún no hay oportunidades",
     },
+    deals: {
+      status: {
+        won: "Ganada",
+        lost: "Perdida",
+        open: "Abierta",
+      },
+    },
     messages: {
       phoneRequired: "El número de teléfono es obligatorio",
       updateSuccess: "Contacto actualizado",
@@ -224,6 +235,9 @@ const contacts = {
       cancel: "Cancelar",
       import: "Importar {{count}} contacto{{plural}}",
     },
+    tags: {
+      willBeCreated: "{{name}} (se creará al importar)",
+    },
     messages: {
       authRequired: "No estás autenticado",
       accountRequired: "Tu perfil no está vinculado a una cuenta.",
@@ -232,6 +246,7 @@ const contacts = {
       tagsSuccess: "{{count}} asignación{{plural}} de etiquetas aplicada{{plural}}",
       tagsWarning: "Los contactos se importaron, pero algunas asignaciones de etiquetas fallaron.",
       tagsInfo: "Etiquetas desconocidas omitidas (créalas en Configuración primero): {{sample}}",
+      tagsMore: "(+{{count}} más)",
       importFailed: "Importación fallida",
       duplicatesSkipped: "{{count}} duplicado{{plural}} omitido{{plural}}",
       failed: "{{count}} contacto{{plural}} no pudo{{plural}} importarse",

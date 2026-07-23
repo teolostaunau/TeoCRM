@@ -155,6 +155,7 @@ const pipelines = {
     placeholders: {
       newStageName: "Nombre de la nueva etapa",
       colorAria: "Elegir color {{color}}",
+      changeColor: "Cambiar color",
       dragAria: "Arrastrar para reordenar",
     },
     actions: {

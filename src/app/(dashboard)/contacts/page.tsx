@@ -147,7 +147,7 @@ export default function ContactsPage() {
       });
       if (seq !== fetchSeq.current) return; // superseded by a newer fetch
       if (error) {
-        toast.error('Failed to load contacts');
+        toast.error(t('contacts.page.messages.loadError'));
         setLoading(false);
         return;
       }
@@ -169,7 +169,7 @@ export default function ContactsPage() {
       const { data, count: exactCount, error } = await query;
       if (seq !== fetchSeq.current) return; // superseded by a newer fetch
       if (error) {
-        toast.error('Failed to load contacts');
+        toast.error(t('contacts.page.messages.loadError'));
         setLoading(false);
         return;
       }
@@ -208,7 +208,7 @@ export default function ContactsPage() {
 
     setContacts(enriched);
     setLoading(false);
-  }, [supabase, page, search, selectedTagIds, tagsMap]);
+  }, [supabase, page, search, selectedTagIds, tagsMap, t]);
 
   // Load-once-on-mount-ish data fetches. Each setter inside runs
   // inside an async promise completion (Supabase await), not
@@ -369,7 +369,7 @@ export default function ContactsPage() {
           <GatedButton
             variant="outline"
             canAct={canEdit}
-            gateReason="add or import contacts"
+            gateReason={t('contacts.page.gateReasons.addOrImport')}
             onClick={() => setImportOpen(true)}
             className="border-border text-muted-foreground hover:bg-muted"
           >
@@ -378,7 +378,7 @@ export default function ContactsPage() {
           </GatedButton>
           <GatedButton
             canAct={canEdit}
-            gateReason="add or import contacts"
+            gateReason={t('contacts.page.gateReasons.addOrImport')}
             onClick={openAddForm}
             className="bg-primary hover:bg-primary/90 text-primary-foreground"
           >
@@ -527,7 +527,7 @@ export default function ContactsPage() {
               variant="destructive"
               size="sm"
               canAct={canEdit}
-              gateReason="delete contacts"
+              gateReason={t('contacts.page.gateReasons.delete')}
               onClick={() => setBulkDeleteOpen(true)}
             >
               <Trash2 className="size-4" />

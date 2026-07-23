@@ -180,7 +180,7 @@ export default function AutomationLogsPage({
                     )}
                     <ul className="space-y-1.5">
                       {(log.steps_executed ?? []).map((r, i) => (
-                        <StepRow key={i} result={r} />
+                        <StepRow key={i} result={r} t={t} />
                       ))}
                       {(log.steps_executed ?? []).length === 0 && (
                         <li className="text-xs text-muted-foreground">{t("automations.logs.noStepsRecorded")}</li>
@@ -222,8 +222,22 @@ function StatusBadge({
   )
 }
 
-function StepRow({ result }: { result: AutomationLogStepResult }) {
+function StepRow({ result, t }: { result: AutomationLogStepResult; t: (key: string) => string }) {
   const ok = result.status === "success"
+  const STEP_KEY_MAP: Record<string, string> = {
+    send_message: "automations.builder.steps.sendMessage",
+    send_template: "automations.builder.steps.sendTemplate",
+    add_tag: "automations.builder.steps.addTag",
+    remove_tag: "automations.builder.steps.removeTag",
+    assign_conversation: "automations.builder.steps.assignConversation",
+    update_contact_field: "automations.builder.steps.updateContactField",
+    create_deal: "automations.builder.steps.createDeal",
+    wait: "automations.builder.steps.wait",
+    condition: "automations.builder.steps.condition",
+    send_webhook: "automations.builder.steps.sendWebhook",
+    close_conversation: "automations.builder.steps.closeConversation",
+  }
+  const labelKey = STEP_KEY_MAP[result.step_type]
   return (
     <li className="flex items-start gap-2 text-xs">
       <span
@@ -235,7 +249,7 @@ function StepRow({ result }: { result: AutomationLogStepResult }) {
       >
         {ok ? <Check className="h-3 w-3" /> : <X className="h-3 w-3" />}
       </span>
-      <span className="text-muted-foreground">{result.step_type}</span>
+      <span className="text-muted-foreground">{labelKey ? t(labelKey) : result.step_type}</span>
       {result.detail && (
         <span className="truncate text-muted-foreground">— {result.detail}</span>
       )}

@@ -225,7 +225,7 @@ export function PipelineSettings({
                 onClick={() => setShowDeleteConfirm(false)}
                 className="border-border bg-transparent text-muted-foreground hover:bg-muted"
               >
-                Cancel
+                {t("pipelines.settings.actions.cancel")}
               </Button>
               <Button
                 onClick={handleDeletePipeline}
@@ -340,14 +340,14 @@ export function PipelineSettings({
                 onClick={() => setShowDeleteConfirm(true)}
                 className="mr-auto bg-red-600 hover:bg-red-700"
               >
-                Delete Pipeline
+                {t("pipelines.settings.actions.deletePipeline")}
               </Button>
               <Button
                 variant="outline"
                 onClick={() => onOpenChange(false)}
                 className="border-border bg-transparent text-muted-foreground hover:bg-muted"
               >
-                Cancel
+                {t("pipelines.settings.actions.cancel")}
               </Button>
               <Button
                 onClick={handleSave}
@@ -429,6 +429,7 @@ function ColorSwatch({
   onChange: (v: string) => void;
   colors: string[];
 }) {
+  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   return (
     <div className="relative">
@@ -437,7 +438,7 @@ function ColorSwatch({
         onClick={() => setOpen((v) => !v)}
         className="h-4 w-4 rounded-full border border-border"
         style={{ backgroundColor: value }}
-        aria-label="Change color"
+        aria-label={t("pipelines.settings.placeholders.changeColor")}
       />
       {open && (
         <>

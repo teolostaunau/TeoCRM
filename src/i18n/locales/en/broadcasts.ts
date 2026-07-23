@@ -148,6 +148,9 @@ const broadcasts = {
   },
   pages: {
     list: {
+      gateReasons: {
+        create: "create broadcasts",
+      },
       errors: {
         load: "Failed to load broadcasts",
       },

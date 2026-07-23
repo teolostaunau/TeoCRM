@@ -82,6 +82,7 @@ function ImportPreviewTags({
   tagColorByKey: Map<string, string>;
   emptyLabel: string;
 }) {
+  const { t } = useTranslation();
   if (tagNames.length === 0) {
     return <span className="text-muted-foreground">{emptyLabel}</span>;
   }
@@ -101,7 +102,7 @@ function ImportPreviewTags({
               color,
               border: `1px solid ${color}${isKnown ? '55' : '30'}`,
             }}
-            title={isKnown ? name : `${name} (will be created on import)`}
+            title={isKnown ? name : t('contacts.import.tags.willBeCreated', { name })}
           >
             <span
               className="size-1.5 shrink-0 rounded-full"
@@ -362,7 +363,7 @@ export function ImportModal({
       if (skippedNames.length > 0) {
         const sample = skippedNames.slice(0, 3).join(', ');
         const more =
-          skippedNames.length > 3 ? ` (+${skippedNames.length - 3} more)` : '';
+          skippedNames.length > 3 ? t('contacts.import.messages.tagsMore', { count: skippedNames.length - 3 }) : '';
         toast.info(t('contacts.import.messages.tagsInfo', { sample }) + more);
       }
       if (skipped > 0) {

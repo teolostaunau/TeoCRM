@@ -223,6 +223,27 @@ const automations = {
   },
 
   page: {
+    gateReasons: {
+      create: "crear automatizaciones",
+    },
+    templates: {
+      welcomeMessage: {
+        name: "Mensaje de bienvenida",
+        description: "Respuesta automática a contactos nuevos con un saludo.",
+      },
+      outOfOffice: {
+        name: "Fuera de oficina",
+        description: "Respuesta automática fuera del horario laboral.",
+      },
+      leadQualifier: {
+        name: "Calificador de leads",
+        description: "Hacer preguntas de calificación para filtrar leads.",
+      },
+      followUpReminder: {
+        name: "Recordatorio de seguimiento",
+        description: "Enviar un recordatorio si el contacto no ha respondido en 24 horas.",
+      },
+    },
     title: "Automatizaciones",
     description: "Crea flujos de trabajo que reaccionan automáticamente a eventos de WhatsApp®.",
     create: "Crear automatización",

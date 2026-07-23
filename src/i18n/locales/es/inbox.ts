@@ -72,6 +72,9 @@ const inbox = {
   },
 
   composer: {
+    gateReasons: {
+      send: "enviar mensajes",
+    },
     sessionExpired: "La sesión de 24 horas expiró. Usa una plantilla para volver a contactar.",
     templates: "Plantillas",
 

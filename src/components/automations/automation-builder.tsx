@@ -375,7 +375,7 @@ function TagSelect({
         {/* Preserve a saved tag that's since been deleted so editing an
             existing automation doesn't silently drop it. */}
         {value && !selected && (
-          <option value={value}>{value} (unknown tag)</option>
+          <option value={value}>{value} ({t("automations.builder.resources.unknownTag")})</option>
         )}
       </select>
     </div>
@@ -405,18 +405,18 @@ function ContactFieldSelect({
       className={SELECT_CLASS}
     >
       <option value="name">
-        {t("automations.builder.contactFields.name")}
+        {t("automations.builder.fields.name")}
       </option>
 
       <option value="email">
-        {t("automations.builder.contactFields.email")}
+        {t("automations.builder.fields.email")}
       </option>
 
       <option value="company">
-        {t("automations.builder.contactFields.company")}
+        {t("automations.builder.fields.company")}
       </option>
       {customFields.length > 0 && (
-        <optgroup label="Custom fields">
+        <optgroup label={t("automations.builder.fields.customFields")}>
           {customFields.map((f) => (
             <option key={f.id} value={`custom:${f.id}`}>
               {f.field_name}
@@ -425,7 +425,7 @@ function ContactFieldSelect({
         </optgroup>
       )}
       {customValue && !knownCustom && (
-        <option value={customValue}>{customValue} (unknown field)</option>
+        <option value={customValue}>{customValue} ({t("automations.builder.resources.unknown")})</option>
       )}
     </select>
   )
@@ -445,7 +445,7 @@ function AgentSelect({
   if (members.length === 0) {
     return (
       <Input
-        placeholder="Agent id"
+        placeholder={t("automations.builder.resources.agentId")}
         value={value}
         onChange={(e) => onChange(e.target.value)}
         className="bg-muted text-foreground"
@@ -460,7 +460,7 @@ function AgentSelect({
       className={SELECT_CLASS}
     >
       <option value="">
-        {t("automations.builder.placeholders.selectAgent")}
+        {t("automations.builder.resources.selectAgent")}
       </option>
       {members.map((m) => (
         <option key={m.user_id} value={m.user_id}>
@@ -468,7 +468,7 @@ function AgentSelect({
         </option>
       ))}
       {value && !selected && (
-        <option value={value}>{value} ({t("automations.builder.emptyStates.noAgents")})</option>
+        <option value={value}>{value} ({t("automations.builder.resources.unknownAgent")})</option>
       )}
     </select>
   )
@@ -532,7 +532,7 @@ function SendTemplateFields({
         }}
         className={SELECT_CLASS}
       >
-        <option value="">{t("automations.builder.placeholders.selectTemplate")}</option>
+        <option value="">{t("automations.builder.resources.selectTemplate")}</option>
         {templates.map((t) => {
           const lang = t.language ?? "en_US"
           return (
@@ -543,9 +543,9 @@ function SendTemplateFields({
         })}
         {current && !hasMatch && (
           <option value={current}>
-            {templateName} ({language || t("automations.builder.general.unknown")}
+            {templateName} ({language || t("automations.builder.resources.unknown")}
             ){" "}
-            {t("automations.builder.general.notInApprovedList")}
+            {t("automations.builder.resources.notInApprovedList")}
           </option>
         )}
       </select>
@@ -598,7 +598,7 @@ export function AutomationBuilder({ initial }: { initial: BuilderInitial }) {
     setSaving(true)
     try {
       const payload = {
-        name: state.name || "Untitled automation",
+        name: state.name || t("automations.builder.general.untitledAutomation"),
         description: state.description || null,
         trigger_type: state.trigger_type,
         trigger_config: state.trigger_config,
@@ -793,7 +793,7 @@ function TriggerCard({
             {type === "tag_added" && (
               <div>
                 <label className="mb-1 block text-xs font-medium text-muted-foreground">
-                  Tag
+                  {t("automations.builder.fields.tag")}
                 </label>
                 <TagSelect
                   value={(config.tag_id as string) ?? ""}
@@ -803,7 +803,7 @@ function TriggerCard({
             )}
             {type === "time_based" && (
               <Input
-                placeholder="Cron expression or HH:mm"
+                placeholder={t("automations.builder.placeholders.schedule")}
                 value={(config.schedule as string) ?? ""}
                 onChange={(e) =>
                   onConfigChange({ ...config, schedule: e.target.value })
@@ -997,10 +997,10 @@ function StepRenderer({
             </div>
             <div className="min-w-0 flex-1">
               <div className="text-[11px] uppercase tracking-wide text-muted-foreground">
-                {isCondition ? "Condition" : step.step_type === "wait" ? "Wait" : "Action"}
+                {isCondition ? t("automations.builder.categories.condition") : step.step_type === "wait" ? t("automations.builder.categories.wait") : t("automations.builder.categories.action")}
               </div>
               <div className="truncate text-sm font-medium text-foreground">{t(STEP_LABEL_KEYS[step.step_type])}</div>
-              <div className="truncate text-[11px] text-muted-foreground">{previewFor(step)}</div>
+              <div className="truncate text-[11px] text-muted-foreground">{previewFor(step, t)}</div>
             </div>
             <ChevronDown
               className={cn("h-4 w-4 text-muted-foreground transition-transform", expanded && "rotate-180")}
@@ -1205,10 +1205,10 @@ function StepEditor({
               className="w-full rounded-md border border-border bg-muted px-2 py-1.5 text-sm text-foreground"
             >
               <option value="round_robin">
-                {t("automations.builder.assignment.roundRobin")}
+                {t("automations.builder.modes.roundRobin")}
               </option>
               <option value="specific">
-                {t("automations.builder.assignment.specificAgent")}
+                {t("automations.builder.modes.specific")}
               </option>
             </select>
           </FieldBlock>
@@ -1258,7 +1258,7 @@ function StepEditor({
               className="bg-muted text-foreground"
             />
           </FieldBlock>
-          <FieldBlock label="Title">
+          <FieldBlock label={t("automations.builder.fields.title")}>
             <Input
               value={(cfg.title as string) ?? ""}
               onChange={(e) => set({ title: e.target.value })}
@@ -1278,7 +1278,7 @@ function StepEditor({
     case "wait":
       return (
         <div className="grid grid-cols-2 gap-2">
-          <FieldBlock label="Amount">
+          <FieldBlock label={t("automations.builder.fields.amount")}>
             <Input
               type="number"
               min={1}
@@ -1294,15 +1294,15 @@ function StepEditor({
               className="w-full rounded-md border border-border bg-muted px-2 py-1.5 text-sm text-foreground"
             >
               <option value="minutes">
-                {t("automations.builder.timeUnits.minutes")}
+                {t("automations.builder.units.minutes")}
               </option>
 
               <option value="hours">
-                {t("automations.builder.timeUnits.hours")}
+                {t("automations.builder.units.hours")}
               </option>
 
               <option value="days">
-                {t("automations.builder.timeUnits.days")}
+                {t("automations.builder.units.days")}
               </option>
             </select>
           </FieldBlock>
@@ -1372,7 +1372,7 @@ function StepEditor({
     case "close_conversation":
       return (
         <p className="text-xs text-muted-foreground">
-          Sets the conversation status to &quot;closed&quot;. No configuration needed.
+          {t("automations.builder.closeConversation.description")}
         </p>
       )
     default:
@@ -1395,18 +1395,18 @@ function FieldBlock({
   )
 }
 
-function previewFor(step: BuilderStep): string {
+function previewFor(step: BuilderStep, t: (key: string) => string): string {
   switch (step.step_type) {
     case "send_message":
-      return (step.step_config.text as string) || "no text yet"
+      return (step.step_config.text as string) || t("automations.builder.preview.noText")
     case "send_template":
-      return (step.step_config.template_name as string) || "pick a template"
+      return (step.step_config.template_name as string) || t("automations.builder.preview.pickTemplate")
     case "wait":
       return `${step.step_config.amount ?? "?"} ${step.step_config.unit ?? ""}`
     case "condition":
-      return `when ${step.step_config.subject ?? "?"}`
+      return `${t("automations.builder.preview.when")} ${step.step_config.subject ?? "?"}`
     case "send_webhook":
-      return (step.step_config.url as string) || "no url"
+      return (step.step_config.url as string) || t("automations.builder.preview.noUrl")
     default:
       return ""
   }

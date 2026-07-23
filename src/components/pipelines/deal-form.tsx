@@ -439,7 +439,7 @@ export function DealForm({
                 onClick={() => onOpenChange(false)}
                 className="flex-1 border-border bg-transparent text-muted-foreground hover:bg-muted"
               >
-                Cancel
+                {t("pipelines.dealForm.actions.cancel")}
               </Button>
               <Button
                 onClick={handleSave}
