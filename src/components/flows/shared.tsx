@@ -80,90 +80,111 @@ export interface BuilderNode {
 export type NodeCategory = 'messaging' | 'logic' | 'flow';
 
 /** Category labels + the order they render in the add-step menu. */
-export const NODE_CATEGORIES: { id: NodeCategory; label: string }[] = [
-  { id: 'messaging', label: 'Messaging' },
-  { id: 'logic', label: 'Logic & data' },
-  { id: 'flow', label: 'Flow control' },
+export const NODE_CATEGORIES: {
+  id: NodeCategory;
+  labelKey: string;
+}[] = [
+  {
+    id: 'messaging',
+    labelKey: 'flows.nodes.categories.messaging',
+  },
+  {
+    id: 'logic',
+    labelKey: 'flows.nodes.categories.logic',
+  },
+  {
+    id: 'flow',
+    labelKey: 'flows.nodes.categories.flow',
+  },
 ];
 
 export const NODE_META: Record<
   NodeType,
   {
-    label: string;
+    labelKey: string;
     icon: typeof Workflow;
     color: string;
-    blurb: string;
+    blurbKey: string;
     category: NodeCategory;
   }
 > = {
   start: {
-    label: 'Start',
+    labelKey: 'flows.nodes.types.start.label',
     icon: PlayCircle,
     color: 'text-emerald-400',
-    blurb: 'Entry point of the flow',
+    blurbKey: 'flows.nodes.types.start.description',
     category: 'flow',
   },
+
   send_message: {
-    label: 'Send message',
+    labelKey: 'flows.nodes.types.sendMessage.label',
     icon: MessageCircle,
     color: 'text-sky-400',
-    blurb: 'Sends a WhatsApp text message',
+    blurbKey: 'flows.nodes.types.sendMessage.description',
     category: 'messaging',
   },
+
   send_buttons: {
-    label: 'Send buttons',
+    labelKey: 'flows.nodes.types.sendButtons.label',
     icon: ListChecks,
     color: 'text-primary',
-    blurb: 'Sends quick-reply buttons',
+    blurbKey: 'flows.nodes.types.sendButtons.description',
     category: 'messaging',
   },
+
   send_list: {
-    label: 'Send list',
+    labelKey: 'flows.nodes.types.sendList.label',
     icon: ListPlus,
     color: 'text-indigo-400',
-    blurb: 'Sends a tappable list of options',
+    blurbKey: 'flows.nodes.types.sendList.description',
     category: 'messaging',
   },
+
   send_media: {
-    label: 'Send media',
+    labelKey: 'flows.nodes.types.sendMedia.label',
     icon: Paperclip,
     color: 'text-cyan-400',
-    blurb: 'Sends an image, video, or document',
+    blurbKey: 'flows.nodes.types.sendMedia.description',
     category: 'messaging',
   },
+
   collect_input: {
-    label: 'Collect input',
+    labelKey: 'flows.nodes.types.collectInput.label',
     icon: Inbox,
     color: 'text-teal-400',
-    blurb: 'Asks a question, saves the reply',
+    blurbKey: 'flows.nodes.types.collectInput.description',
     category: 'logic',
   },
+
   condition: {
-    label: 'If / else',
+    labelKey: 'flows.nodes.types.condition.label',
     icon: GitFork,
     color: 'text-fuchsia-400',
-    blurb: 'Branches on a rule',
+    blurbKey: 'flows.nodes.types.condition.description',
     category: 'logic',
   },
+
   set_tag: {
-    label: 'Tag contact',
+    labelKey: 'flows.nodes.types.setTag.label',
     icon: Tag,
     color: 'text-pink-400',
-    blurb: 'Adds or removes a contact tag',
+    blurbKey: 'flows.nodes.types.setTag.description',
     category: 'logic',
   },
+
   handoff: {
-    label: 'Handoff to agent',
+    labelKey: 'flows.nodes.types.handoff.label',
     icon: UserPlus,
     color: 'text-amber-400',
-    blurb: 'Hands the conversation to a human',
+    blurbKey: 'flows.nodes.types.handoff.description',
     category: 'flow',
   },
+
   end: {
-    label: 'End',
+    labelKey: 'flows.nodes.types.end.label',
     icon: Flag,
     color: 'text-muted-foreground',
-    blurb: 'Ends the flow',
+    blurbKey: 'flows.nodes.types.end.description',
     category: 'flow',
   },
 };
@@ -176,10 +197,10 @@ export const NODE_META: Record<
  */
 export function groupNodeTypesByCategory(
   types: NodeType[]
-): { id: NodeCategory; label: string; types: NodeType[] }[] {
-  return NODE_CATEGORIES.map(({ id, label }) => ({
+): { id: NodeCategory; labelKey: string; types: NodeType[] }[] {
+  return NODE_CATEGORIES.map(({ id, labelKey }) => ({
     id,
-    label,
+    labelKey,
     types: types.filter((t) => NODE_META[t].category === id),
   })).filter((group) => group.types.length > 0);
 }

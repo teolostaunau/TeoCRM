@@ -20,22 +20,23 @@ import { ModeToggle } from "@/components/layout/mode-toggle";
 import { LanguageSwitcher } from "@/components/common/language-switcher";
 import { useTranslation } from "@/i18n/react";
 
-const pageTitles: Record<string, string> = {
-  "/dashboard": "Dashboard",
-  "/inbox": "Inbox",
-  "/contacts": "Contacts",
-  "/pipelines": "Pipelines",
-  "/broadcasts": "Broadcasts",
-  "/automations": "Automations",
-  "/settings": "Settings",
+const PAGE_TITLE_KEYS: Record<string, string> = {
+  "/dashboard": "app.navigation.dashboard",
+  "/inbox": "app.navigation.inbox",
+  "/contacts": "app.navigation.contacts",
+  "/pipelines": "app.navigation.pipelines",
+  "/broadcasts": "app.navigation.broadcasts",
+  "/automations": "app.navigation.automations",
+  "/flows": "app.navigation.flows",
+  "/settings": "app.navigation.settings",
 };
 
-function getPageTitle(pathname: string): string {
-  if (pageTitles[pathname]) return pageTitles[pathname];
-  const match = Object.entries(pageTitles).find(([path]) =>
+function getPageTitle(pathname: string, t: (key: string) => string): string {
+  if (PAGE_TITLE_KEYS[pathname]) return t(PAGE_TITLE_KEYS[pathname]);
+  const match = Object.entries(PAGE_TITLE_KEYS).find(([path]) =>
     pathname.startsWith(path),
   );
-  return match ? match[1] : "Dashboard";
+  return match ? t(match[1]) : t("app.navigation.dashboard");
 }
 
 interface HeaderProps {
@@ -47,8 +48,8 @@ interface HeaderProps {
 export function Header({ onOpenSidebar }: HeaderProps) {
   const pathname = usePathname();
   const { profile, signOut } = useAuth();
-  const title = getPageTitle(pathname);
   const { t } = useTranslation();
+  const title = getPageTitle(pathname, t);
 
   const initial =
     profile?.full_name?.charAt(0)?.toUpperCase() ??

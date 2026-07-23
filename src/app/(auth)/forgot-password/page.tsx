@@ -14,6 +14,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { MessageSquare, CheckCircle, ArrowLeft } from "lucide-react";
+import { AuthLayout } from "@/components/auth/AuthLayout";
+import { useTranslation } from "@/i18n/react";
+import { LanguageSwitcher } from "@/components/common";
 
 export default function ForgotPasswordPage() {
   const [email, setEmail] = useState("");
@@ -21,6 +24,8 @@ export default function ForgotPasswordPage() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const supabase = createClient();
+
+  const { t } = useTranslation();
 
   const handleReset = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -43,19 +48,22 @@ export default function ForgotPasswordPage() {
 
   if (success) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-background px-4">
+      <AuthLayout>
+        <div className="flex justify-end mb-4">
+          <LanguageSwitcher />
+        </div>
         <Card className="w-full max-w-md border-border bg-card">
           <CardHeader className="items-center text-center">
             <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
               <CheckCircle className="h-6 w-6 text-primary" />
             </div>
             <CardTitle className="text-xl text-foreground">
-              Check your email
+              {t("auth.forgotPassword.messages.checkEmail")}
             </CardTitle>
             <CardDescription className="text-muted-foreground">
-              We&apos;ve sent a password reset link to{" "}
-              <span className="text-foreground">{email}</span>. Please check your
-              inbox.
+              {t("auth.forgotPassword.messages.checkEmailDescription", {
+                email,
+              })}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -64,25 +72,30 @@ export default function ForgotPasswordPage() {
                 variant="outline"
                 className="w-full border-border text-muted-foreground hover:bg-muted hover:text-foreground"
               >
-                Back to sign in
+                {t("auth.forgotPassword.actions.backToLogin")}
               </Button>
             </Link>
           </CardContent>
         </Card>
-      </div>
+      </AuthLayout>
     );
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+    <AuthLayout>
+      <div className="flex justify-end mb-4">
+        <LanguageSwitcher />
+      </div>
       <Card className="w-full max-w-md border-border bg-card">
         <CardHeader className="items-center text-center">
           <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
             <MessageSquare className="h-6 w-6 text-primary" />
           </div>
-          <CardTitle className="text-xl text-foreground">Reset password</CardTitle>
+          <CardTitle className="text-xl text-foreground">
+            {t("auth.forgotPassword.title")}
+          </CardTitle>
           <CardDescription className="text-muted-foreground">
-            Enter your email and we&apos;ll send you a reset link
+            {t("auth.forgotPassword.description")}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -95,12 +108,12 @@ export default function ForgotPasswordPage() {
 
             <div className="flex flex-col gap-2">
               <Label htmlFor="email" className="text-muted-foreground">
-                Email
+                {t("auth.forgotPassword.fields.email.label")}
               </Label>
               <Input
                 id="email"
                 type="email"
-                placeholder="you@example.com"
+                placeholder={t("auth.forgotPassword.fields.email.placeholder")}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -113,7 +126,9 @@ export default function ForgotPasswordPage() {
               disabled={loading}
               className="mt-2 h-10 w-full bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-50"
             >
-              {loading ? "Sending..." : "Send reset link"}
+              {loading
+                ? t("auth.forgotPassword.actions.sending")
+                : t("auth.forgotPassword.actions.sendResetLink")}
             </Button>
           </form>
 
@@ -122,10 +137,10 @@ export default function ForgotPasswordPage() {
             className="mt-6 flex items-center justify-center gap-2 text-sm text-muted-foreground hover:text-foreground"
           >
             <ArrowLeft className="h-4 w-4" />
-            Back to sign in
+            {t("auth.forgotPassword.actions.backToLogin")}
           </Link>
         </CardContent>
       </Card>
-    </div>
+    </AuthLayout>
   );
 }

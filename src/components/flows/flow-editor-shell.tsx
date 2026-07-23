@@ -35,6 +35,7 @@ import { ValidationPanel } from "./validation-panel";
 import { NODE_META, nodeColors, type NodeType } from "./shared";
 import { cn } from "@/lib/utils";
 import type { FlowRow, FlowNodeRow } from "@/lib/flows/types";
+import { useTranslation } from "@/i18n/react";
 
 /**
  * Below this viewport width we force list view and hide the toggle.
@@ -89,6 +90,7 @@ export function FlowEditorShell({ initialFlow, initialNodes }: Props) {
       // ignore
     }
   };
+  const { t } = useTranslation();
 
   return (
     <FlowEditorProvider initialFlow={initialFlow} initialNodes={initialNodes}>
@@ -120,16 +122,16 @@ export function FlowEditorShell({ initialFlow, initialNodes }: Props) {
               />
             </div>
             <div className="ml-auto hidden flex-wrap items-center gap-x-3.5 gap-y-1.5 lg:flex">
-              {LEGEND_TYPES.map((t) => (
+              {LEGEND_TYPES.map((nodeType) => (
                 <span
-                  key={t}
+                  key={nodeType}
                   className="inline-flex items-center gap-1.5 text-[11.5px] text-muted-foreground"
                 >
                   <span
                     className="h-2.5 w-2.5 rounded-full"
-                    style={{ background: nodeColors(t).solid }}
+                    style={{ background: nodeColors(nodeType).solid }}
                   />
-                  {NODE_META[t].label}
+                  {t(NODE_META[nodeType].labelKey)}
                 </span>
               ))}
             </div>

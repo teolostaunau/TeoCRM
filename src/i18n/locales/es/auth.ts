@@ -32,7 +32,10 @@ const auth = {
 
   signup: {
     title: "Crear cuenta",
-    description: "Crea tu cuenta para comenzar.",
+    titleInvite: "Crear cuenta y unirse",
+    description: "Comienza con TeoCRM",
+    descriptionInvite:
+      "Verifica tu correo electrónico, luego acepta la invitación para unirte a tu equipo.",
 
     fields: {
       fullName: {
@@ -45,16 +48,23 @@ const auth = {
       },
       password: {
         label: "Contraseña",
-        placeholder: "Crea una contraseña",
+        placeholder: "Mínimo 6 caracteres",
       },
       confirmPassword: {
         label: "Confirmar contraseña",
-        placeholder: "Confirma tu contraseña",
+        placeholder: "Repite tu contraseña",
       },
     },
 
     actions: {
       createAccount: "Crear cuenta",
+      creating: "Creando cuenta...",
+    },
+
+    messages: {
+      checkEmail: "Revisa tu correo",
+      checkEmailDescription:
+        "Hemos enviado un enlace de confirmación a {{email}}. Revisa tu correo y haz clic en el enlace para verificar tu cuenta.",
     },
 
     footer: {
@@ -77,7 +87,7 @@ const auth = {
   forgotPassword: {
     title: "Restablecer contraseña",
     description:
-      "Ingresa tu correo electrónico y te enviaremos un enlace para restablecer tu contraseña.",
+      "Ingresa tu correo y te enviaremos un enlace para restablecer tu contraseña.",
 
     fields: {
       email: {
@@ -88,7 +98,14 @@ const auth = {
 
     actions: {
       sendResetLink: "Enviar enlace",
+      sending: "Enviando...",
       backToLogin: "Volver a iniciar sesión",
+    },
+
+    messages: {
+      checkEmail: "Revisa tu correo",
+      checkEmailDescription:
+        "Hemos enviado un enlace para restablecer tu contraseña a {{email}}. Revisa tu correo.",
     },
   },
 

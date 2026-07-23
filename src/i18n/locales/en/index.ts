@@ -7,6 +7,7 @@ import contacts from "./contacts";
 import pipelines from "./pipelines";
 import broadcasts from "./broadcasts";
 import automations from "./automations";
+import flows from "./flows";
 
 const en = {
   common,
@@ -18,6 +19,7 @@ const en = {
   pipelines,
   broadcasts,
   automations,
+  flows,
 };
 
 export default en;

@@ -15,6 +15,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { MessageSquare, CheckCircle, UsersRound } from "lucide-react";
+import { AuthLayout } from "@/components/auth/AuthLayout";
+import { useTranslation } from "@/i18n/react";
+import { LanguageSwitcher } from "@/components/common";
 
 // `useSearchParams` opts the component out of static prerendering
 // unless wrapped in Suspense — same pattern as /login.
@@ -44,17 +47,19 @@ function SignupPageInner() {
   const [success, setSuccess] = useState(false);
   const supabase = createClient();
 
+  const { t } = useTranslation();
+
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
 
     if (password !== confirmPassword) {
-      setError("Passwords do not match");
+      setError(t("auth.errors.passwordsDoNotMatch"));
       return;
     }
 
     if (password.length < 6) {
-      setError("Password must be at least 6 characters");
+      setError(t("auth.errors.passwordTooShort"));
       return;
     }
 
@@ -91,19 +96,20 @@ function SignupPageInner() {
 
   if (success) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-background px-4">
+      <AuthLayout>
+        <div className="flex justify-end mb-4">
+          <LanguageSwitcher />
+        </div>
         <Card className="w-full max-w-md border-border bg-card">
           <CardHeader className="items-center text-center">
             <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
               <CheckCircle className="h-6 w-6 text-primary" />
             </div>
             <CardTitle className="text-xl text-foreground">
-              Check your email
+              {t("auth.signup.messages.checkEmail")}
             </CardTitle>
             <CardDescription className="text-muted-foreground">
-              We&apos;ve sent a confirmation link to{" "}
-              <span className="text-foreground">{email}</span>. Please check your
-              inbox and click the link to verify your account.
+              {t("auth.signup.messages.checkEmailDescription", { email })}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -118,17 +124,20 @@ function SignupPageInner() {
                 variant="outline"
                 className="w-full border-border text-muted-foreground hover:bg-muted hover:text-foreground"
               >
-                Back to sign in
+                {t("auth.forgotPassword.actions.backToLogin")}
               </Button>
             </Link>
           </CardContent>
         </Card>
-      </div>
+      </AuthLayout>
     );
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+    <AuthLayout>
+      <div className="flex justify-end mb-4">
+        <LanguageSwitcher />
+      </div>
       <Card className="w-full max-w-md border-border bg-card">
         <CardHeader className="items-center text-center">
           <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
@@ -139,12 +148,14 @@ function SignupPageInner() {
             )}
           </div>
           <CardTitle className="text-xl text-foreground">
-            {inviteToken ? "Create account & join" : "Create account"}
+            {inviteToken
+              ? t("auth.signup.titleInvite")
+              : t("auth.signup.title")}
           </CardTitle>
           <CardDescription className="text-muted-foreground">
             {inviteToken
-              ? "Verify your email, then accept the invitation to join your team."
-              : "Get started with TeoCRM"}
+              ? t("auth.signup.descriptionInvite")
+              : t("auth.signup.description")}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -157,12 +168,12 @@ function SignupPageInner() {
 
             <div className="flex flex-col gap-2">
               <Label htmlFor="fullName" className="text-muted-foreground">
-                Full name
+                {t("auth.signup.fields.fullName.label")}
               </Label>
               <Input
                 id="fullName"
                 type="text"
-                placeholder="John Doe"
+                placeholder={t("auth.signup.fields.fullName.placeholder")}
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
                 required
@@ -172,12 +183,12 @@ function SignupPageInner() {
 
             <div className="flex flex-col gap-2">
               <Label htmlFor="email" className="text-muted-foreground">
-                Email
+                {t("auth.signup.fields.email.label")}
               </Label>
               <Input
                 id="email"
                 type="email"
-                placeholder="you@example.com"
+                placeholder={t("auth.signup.fields.email.placeholder")}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -187,12 +198,12 @@ function SignupPageInner() {
 
             <div className="flex flex-col gap-2">
               <Label htmlFor="password" className="text-muted-foreground">
-                Password
+                {t("auth.signup.fields.password.label")}
               </Label>
               <Input
                 id="password"
                 type="password"
-                placeholder="At least 6 characters"
+                placeholder={t("auth.signup.fields.password.placeholder")}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
@@ -202,12 +213,12 @@ function SignupPageInner() {
 
             <div className="flex flex-col gap-2">
               <Label htmlFor="confirmPassword" className="text-muted-foreground">
-                Confirm password
+                {t("auth.signup.fields.confirmPassword.label")}
               </Label>
               <Input
                 id="confirmPassword"
                 type="password"
-                placeholder="Repeat your password"
+                placeholder={t("auth.signup.fields.confirmPassword.placeholder")}
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 required
@@ -220,12 +231,14 @@ function SignupPageInner() {
               disabled={loading}
               className="mt-2 h-10 w-full bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-50"
             >
-              {loading ? "Creating account..." : "Create account"}
+              {loading
+                ? t("auth.signup.actions.creating")
+                : t("auth.signup.actions.createAccount")}
             </Button>
           </form>
 
           <p className="mt-6 text-center text-sm text-muted-foreground">
-            Already have an account?{" "}
+            {t("auth.signup.footer.alreadyHaveAccount")}{" "}
             <Link
               href={
                 inviteToken
@@ -234,11 +247,11 @@ function SignupPageInner() {
               }
               className="text-primary hover:text-primary/80"
             >
-              Sign in
+              {t("auth.signup.footer.signIn")}
             </Link>
           </p>
         </CardContent>
       </Card>
-    </div>
+    </AuthLayout>
   );
 }

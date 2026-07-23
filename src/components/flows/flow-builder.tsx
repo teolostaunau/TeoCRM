@@ -60,6 +60,7 @@ import { NodeConfigForm } from './forms/node-config-form';
 import { NodeKeySelect } from './forms/fields';
 import { IssueLine } from './validation-panel';
 import { useFlowEditor, type BuilderState } from './flow-editor-state';
+import { useTranslation } from "@/i18n/react";
 
 // ============================================================
 // Local state shape — mirrors the DB but the configs are typed
@@ -72,6 +73,7 @@ import { useFlowEditor, type BuilderState } from './flow-editor-state';
 // ============================================================
 
 export function FlowBuilder() {
+  const { t } = useTranslation();
   const {
     state,
     setState,
@@ -164,16 +166,16 @@ export function FlowBuilder() {
       <section className="flex flex-col gap-3">
         <div className="flex items-center justify-between">
           <h2 className="text-foreground text-sm font-semibold">
-            Nodes ({state.nodes.length})
+              {t("flows.builder.nodes.title", {
+                count: state.nodes.length,
+              })}
           </h2>
           <AddNodeButton onAdd={addNode} />
         </div>
 
         {state.nodes.length === 0 ? (
           <div className="border-border bg-card/50 text-muted-foreground rounded-lg border border-dashed p-8 text-center text-sm">
-            Add a <strong>Start</strong> node, then a{' '}
-            <strong>Send buttons</strong> node, then a <strong>Handoff</strong>{' '}
-            — that&apos;s the welcome-menu shape from the brief.
+            {t("flows.builder.nodes.emptyState")}
           </div>
         ) : (
           state.nodes.map((node) => (
@@ -394,6 +396,7 @@ function NodeCard({
   const c = nodeColors(node.node_type);
   const hasError = issues.some((i) => i.severity === 'error');
   const preview = summarizeNode(node);
+  const { t } = useTranslation()
   return (
     <div
       ref={cardRef}
@@ -424,7 +427,7 @@ function NodeCard({
               className="truncate text-[11px] font-semibold tracking-wider uppercase"
               style={{ color: c.text }}
             >
-              {meta.label}
+              {t(meta.labelKey)}
             </span>
             <code className="bg-muted text-muted-foreground rounded px-1.5 py-0.5 text-[10px]">
               {node.node_key}
@@ -434,7 +437,7 @@ function NodeCard({
                 variant="outline"
                 className="border-primary/40 bg-primary/10 text-primary text-[10px]"
               >
-                Entry
+                {t("flows.nodes.entry")}
               </Badge>
             )}
           </div>
@@ -465,7 +468,7 @@ function NodeCard({
             <div className="flex items-center gap-2">
               {!isEntry && (
                 <Button variant="ghost" size="sm" onClick={onSetEntry}>
-                  Set as entry
+                  {t("flows.nodes.actions.setAsEntry")}
                 </Button>
               )}
             </div>
@@ -476,7 +479,7 @@ function NodeCard({
               className="text-red-400 hover:bg-red-500/10 hover:text-red-300"
             >
               <Trash2 className="h-3.5 w-3.5" />
-              Remove node
+              {t("flows.nodes.actions.remove")}
             </Button>
           </div>
           {issues.length > 0 && (
@@ -512,6 +515,7 @@ function NodeConfigWithAdvanced({
   const [showAdvanced, setShowAdvanced] = useState(false);
   const hasReplyIds =
     node.node_type === 'send_buttons' || node.node_type === 'send_list';
+  const { t } = useTranslation();
   return (
     <div className="flex flex-col gap-3">
       <NodeConfigForm
@@ -531,13 +535,16 @@ function NodeConfigWithAdvanced({
           ) : (
             <ChevronDown className="h-3 w-3" />
           )}
-          {showAdvanced ? 'Hide' : 'Show'} advanced
+          {showAdvanced
+            ? t("flows.advanced.hide")
+            : t("flows.advanced.show")}{" "}
+          {t("flows.advanced.label")}
         </button>
         {showAdvanced && (
           <div className="mt-3 flex flex-col gap-3">
             <div>
               <label className="text-muted-foreground mb-1 block text-xs">
-                Node key (internal identifier — keep stable for analytics)
+                {t("flows.advanced.nodeKey")}
               </label>
               <Input
                 value={node.node_key}
@@ -549,9 +556,7 @@ function NodeConfigWithAdvanced({
             </div>
             {hasReplyIds && (
               <p className="text-muted-foreground text-[10px]">
-                Reply IDs for each option are shown inline above. They&apos;re
-                returned by WhatsApp when a customer taps; you usually
-                don&apos;t need to touch them.
+                {t("flows.advanced.replyIdsHelp")}
               </p>
             )}
           </div>
@@ -578,6 +583,7 @@ function AddNodeButton({ onAdd }: { onAdd: (type: NodeType) => void }) {
     'handoff',
     'end',
   ];
+  const { t } = useTranslation();
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
@@ -585,21 +591,21 @@ function AddNodeButton({ onAdd }: { onAdd: (type: NodeType) => void }) {
         aria-label="Add node"
       >
         <Plus className="h-3.5 w-3.5" />
-        Add node
+        {t("flows.nodes.actions.add")}
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="border-border bg-popover">
         {groupNodeTypesByCategory(types).map((group, i) => (
           <div key={group.id}>
             {i > 0 && <DropdownMenuSeparator />}
             <DropdownMenuLabel className="text-muted-foreground text-[11px] font-semibold tracking-wider uppercase">
-              {group.label}
+              {group.labelKey}
             </DropdownMenuLabel>
-            {group.types.map((t) => {
-              const meta = NODE_META[t];
+            {group.types.map((nodeType) => {
+              const meta = NODE_META[nodeType];
               return (
-                <DropdownMenuItem key={t} onClick={() => onAdd(t)}>
+                <DropdownMenuItem key={nodeType} onClick={() => onAdd(nodeType)}>
                   <meta.icon className={cn('h-3.5 w-3.5', meta.color)} />
-                  {meta.label}
+                  {t(meta.labelKey)}
                 </DropdownMenuItem>
               );
             })}
