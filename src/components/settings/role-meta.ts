@@ -20,29 +20,29 @@ import type { ChipVariant } from './settings-chip';
  */
 export const ROLE_META: Record<
   AccountRole,
-  { icon: LucideIcon; label: string; variant: ChipVariant; className: string }
+  { icon: LucideIcon; labelKey: string; variant: ChipVariant; className: string }
 > = {
   owner: {
     icon: Crown,
-    label: 'Owner',
+    labelKey: 'settings.common.roles.owner',
     variant: 'owner',
     className: 'border-amber-500/40 bg-amber-500/10 text-amber-300',
   },
   admin: {
     icon: Shield,
-    label: 'Admin',
+    labelKey: 'settings.common.roles.admin',
     variant: 'admin',
     className: 'border-primary/40 bg-primary/10 text-primary',
   },
   agent: {
     icon: UserCog,
-    label: 'Agent',
+    labelKey: 'settings.common.roles.agent',
     variant: 'muted',
     className: 'border-border bg-muted text-muted-foreground',
   },
   viewer: {
     icon: UserIcon,
-    label: 'Viewer',
+    labelKey: 'settings.common.roles.viewer',
     variant: 'muted',
     // Outline-only so it stays quieter than the filled Agent chip in
     // both modes — bg-card would blend into a card surface in light mode.

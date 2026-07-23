@@ -484,7 +484,7 @@ export const flows = {
   },
 
   list: {
-    heading: "Flows",
+    heading: "Flujos",
     beta: "Beta",
     description:
       "Crea conversaciones ramificadas con botones en WhatsApp. Útil para menús, FAQ y clasificación antes de que un agente intervenga.",

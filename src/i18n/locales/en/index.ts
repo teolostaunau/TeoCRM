@@ -8,6 +8,7 @@ import pipelines from "./pipelines";
 import broadcasts from "./broadcasts";
 import automations from "./automations";
 import flows from "./flows";
+import settings from "./settings";
 
 const en = {
   common,
@@ -20,6 +21,7 @@ const en = {
   broadcasts,
   automations,
   flows,
+  settings,
 };
 
 export default en;
