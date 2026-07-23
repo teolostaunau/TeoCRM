@@ -16,8 +16,8 @@ export const DEFAULT_CURRENCY = "USD";
 export interface CurrencyOption {
   /** ISO-4217 code, e.g. "USD". Stored verbatim in the DB. */
   code: string;
-  /** Human label for the dropdown, e.g. "US Dollar". */
-  label: string;
+  /** i18n key for the human label, e.g. "common.currencies.USD". */
+  labelKey: string;
   /** Symbol for compact display, e.g. "$". */
   symbol: string;
 }
@@ -28,20 +28,21 @@ export interface CurrencyOption {
  * list to offer more — nothing else needs to change.
  */
 export const CURRENCIES: CurrencyOption[] = [
-  { code: "USD", label: "US Dollar", symbol: "$" },
-  { code: "EUR", label: "Euro", symbol: "€" },
-  { code: "GBP", label: "British Pound", symbol: "£" },
-  { code: "INR", label: "Indian Rupee", symbol: "₹" },
-  { code: "AUD", label: "Australian Dollar", symbol: "A$" },
-  { code: "CAD", label: "Canadian Dollar", symbol: "C$" },
-  { code: "BRL", label: "Brazilian Real", symbol: "R$" },
-  { code: "JPY", label: "Japanese Yen", symbol: "¥" },
-  { code: "CNY", label: "Chinese Yuan", symbol: "¥" },
-  { code: "AED", label: "UAE Dirham", symbol: "د.إ" },
-  { code: "ZAR", label: "South African Rand", symbol: "R" },
-  { code: "NGN", label: "Nigerian Naira", symbol: "₦" },
-  { code: "SGD", label: "Singapore Dollar", symbol: "S$" },
-  { code: "MXN", label: "Mexican Peso", symbol: "$" },
+  { code: "USD", labelKey: "common.currencies.USD", symbol: "$" },
+  { code: "EUR", labelKey: "common.currencies.EUR", symbol: "€" },
+  { code: "GBP", labelKey: "common.currencies.GBP", symbol: "£" },
+  { code: "INR", labelKey: "common.currencies.INR", symbol: "₹" },
+  { code: "AUD", labelKey: "common.currencies.AUD", symbol: "A$" },
+  { code: "CAD", labelKey: "common.currencies.CAD", symbol: "C$" },
+  { code: "BRL", labelKey: "common.currencies.BRL", symbol: "R$" },
+  { code: "JPY", labelKey: "common.currencies.JPY", symbol: "¥" },
+  { code: "CNY", labelKey: "common.currencies.CNY", symbol: "¥" },
+  { code: "AED", labelKey: "common.currencies.AED", symbol: "د.إ" },
+  { code: "ZAR", labelKey: "common.currencies.ZAR", symbol: "R" },
+  { code: "NGN", labelKey: "common.currencies.NGN", symbol: "₦" },
+  { code: "SGD", labelKey: "common.currencies.SGD", symbol: "S$" },
+  { code: "MXN", labelKey: "common.currencies.MXN", symbol: "$" },
+  { code: "PEN", labelKey: "common.currencies.PEN", symbol: "S/." },
 ];
 
 /**

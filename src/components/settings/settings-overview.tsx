@@ -144,8 +144,8 @@ export function SettingsOverview({
   const roleMeta = accountRole ? ROLE_META[accountRole] : null;
   const RoleIcon = roleMeta?.icon;
 
-  const currencyLabel =
-    CURRENCIES.find((c) => c.code === defaultCurrency)?.label ?? defaultCurrency;
+  const found = CURRENCIES.find((c) => c.code === defaultCurrency);
+  const currencyLabel = found ? t(found.labelKey) : defaultCurrency;
   const themeName = THEMES.find((t) => t.id === theme)?.name ?? theme;
   const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 
