@@ -17,7 +17,7 @@ const auth = {
 
     actions: {
       signIn: "Iniciar sesión",
-      forgotPassword: "¿Olvidaste tu contraseña?",
+      forgotPassword: "¿Contraseña olvidada?",
     },
 
     messages: {
