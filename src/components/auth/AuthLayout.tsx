@@ -9,10 +9,10 @@ interface AuthLayoutProps {
 
 export function AuthLayout({ children }: AuthLayoutProps) {
   return (
-    <div className="h-screen bg-background overflow-hidden">
+    <div className="bg-background">
 
       {/* Desktop */}
-      <div className="hidden min-h-screen lg:grid lg:grid-cols-[1.3fr_0.7fr] xl:grid-cols-[1.35fr_0.65fr]">
+      <div className="hidden h-screen overflow-hidden lg:grid lg:grid-cols-[1.3fr_0.7fr] xl:grid-cols-[1.35fr_0.65fr]">
 
         <aside className="h-full">
           <BrandPanel />
