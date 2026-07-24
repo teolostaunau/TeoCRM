@@ -14,7 +14,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { MessageSquare, UsersRound } from "lucide-react";
 import { AuthLayout } from "@/components/auth/AuthLayout";
 import { useTranslation } from "@/i18n/react";
 import { LanguageSwitcher } from "@/components/common";
@@ -79,12 +78,13 @@ function LoginPageInner() {
       </div>
       <Card className="w-full max-w-md border-border bg-card">
         <CardHeader className="items-center text-center">
-          <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
-            {inviteToken ? (
-              <UsersRound className="h-6 w-6 text-primary" />
-            ) : (
-              <MessageSquare className="h-6 w-6 text-primary" />
-            )}
+          <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-xl">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/brand/isotipo.svg"
+              alt="TeoCRM"
+              className="h-8 w-8 rounded-lg object-contain"
+            />
           </div>
           <CardTitle className="text-xl text-foreground">
             {inviteToken ? t("auth.login.invitation.title") : t("auth.login.title")}

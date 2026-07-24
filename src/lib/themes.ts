@@ -23,7 +23,7 @@ export const THEME_IDS = [
 
 export type ThemeId = (typeof THEME_IDS)[number];
 
-export const DEFAULT_THEME: ThemeId = "violet";
+export const DEFAULT_THEME: ThemeId = "cobalt";
 
 export const STORAGE_KEY = "wacrm.theme";
 
@@ -56,7 +56,7 @@ export function isMode(value: unknown): value is Mode {
 export interface ThemeMeta {
   id: ThemeId;
   name: string;
-  tagline: string;
+  taglineKey: string;
   /**
    * Static swatch color for the picker chip. Hard-coded so the boot
    * script / picker cards don't need a getComputedStyle round trip
@@ -68,33 +68,33 @@ export interface ThemeMeta {
 
 export const THEMES: ReadonlyArray<ThemeMeta> = [
   {
-    id: "violet",
-    name: "Violet",
-    tagline: "The default — confident, slightly playful.",
-    swatch: "oklch(0.526 0.247 293)",
+    id: "cobalt",
+    name: "Cobalt",
+    taglineKey: "settings.appearance.themes.cobalt.tagline",
+    swatch: "oklch(0.585 0.2 254)",
   },
   {
     id: "emerald",
     name: "Emerald",
-    tagline: "Growth-coded, nods at messaging without copying WhatsApp green.",
+    taglineKey: "settings.appearance.themes.emerald.tagline",
     swatch: "oklch(0.62 0.16 162)",
   },
   {
-    id: "cobalt",
-    name: "Cobalt",
-    tagline: "Clean B2B-SaaS blue — calm and product-y.",
-    swatch: "oklch(0.585 0.2 254)",
+    id: "violet",
+    name: "Violet",
+    taglineKey: "settings.appearance.themes.violet.tagline",
+    swatch: "oklch(0.526 0.247 293)",
   },
   {
     id: "amber",
     name: "Amber",
-    tagline: "Warm and friendly — feels good for SMB teams.",
+    taglineKey: "settings.appearance.themes.amber.tagline",
     swatch: "oklch(0.745 0.16 65)",
   },
   {
     id: "rose",
     name: "Rose",
-    tagline: "Bold and modern — D2C, creator-economy, lifestyle.",
+    taglineKey: "settings.appearance.themes.rose.tagline",
     swatch: "oklch(0.645 0.22 16)",
   },
 ];

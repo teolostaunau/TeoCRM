@@ -64,7 +64,7 @@ export function AppearancePanel() {
               key={themeItem.id}
               id={themeItem.id}
               name={themeItem.name}
-              tagline={themeItem.tagline}
+              tagline={t(themeItem.taglineKey)}
               swatch={themeItem.swatch}
               isActive={themeItem.id === theme}
               onPick={() => setTheme(themeItem.id)}

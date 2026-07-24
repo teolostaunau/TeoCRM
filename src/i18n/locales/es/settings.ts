@@ -158,6 +158,23 @@ const settings = {
     mode: "Modo",
     accentColor: "Color de acento",
     active: "Activo",
+    themes: {
+      cobalt: {
+        tagline: "Por defecto — azul limpio estilo B2B-SaaS, calmado y enfocado en producto.",
+      },
+      emerald: {
+        tagline: "Código de crecimiento, insinúa mensajería sin copiar el verde de WhatsApp.",
+      },
+      violet: {
+        tagline: "Seguro y ligeramente juguetón.",
+      },
+      amber: {
+        tagline: "Cálido y amigable — se siente bien para equipos PYME.",
+      },
+      rose: {
+        tagline: "Audaz y moderno — D2C, economía de creadores, lifestyle.",
+      },
+    },
   },
 
   whatsapp: {
